@@ -40,35 +40,33 @@ class ServiceController extends Controller
         return redirect()->back()->with('success', 'Nama service uploaded successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Service $service)
+    public function findUpdate($id)
     {
-        //
+        return view('admin.edit-service', [
+            'service' => Service::find($id),
+        ]);
+    }
+    public function update(Request $request, $id)
+    {
+        $service = Service::find($id);
+        $request->validate([
+            'nama_service' => 'required|unique:tbl_nama_service',
+        ]);
+
+        $service->nama_service = $request->input('nama_service');
+        $service->save();
+
+        return redirect('/admin/layanan')->with('success', 'Layanan updated successfully');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Service $service)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Service $service)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Service $service)
     {
-        //
+        $service = Service::find($service);
+        if ($service) {
+            $service->each->delete();
+            return back()->with('success', 'Layanan has been deleted');
+        } else {
+            return back()->with('error', 'Layanan not found'); // Return an error response if the item is not found
+        }
     }
 }

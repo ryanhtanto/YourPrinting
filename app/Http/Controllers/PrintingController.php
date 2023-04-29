@@ -103,4 +103,13 @@ class PrintingController extends Controller
 
         return redirect()->back()->with('success', 'Daftar service addedd successfully.');
     }
+
+    public function destroy(DaftarService $daftarService)
+    {
+        $services = DaftarService::find($daftarService);
+        if ($services) {
+            $services->each->delete();
+            return back()->with('success', 'Daftar Service has been deleted');
+        }
+    }
 }

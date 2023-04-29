@@ -4,7 +4,7 @@
         <section>
                 <div class="col-lg-6">
                         <h5 class="fw-bold">DAFTAR NAMA BAHAN</h5>
-                        <form class="mt-3" action="/admin/bahan" method="POST">
+                        <form class="mt-3" action="admin/bahan" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                         <label for="add-bahan" class="form-label">TAMBAH NAMA BAHAN</label>
@@ -33,8 +33,8 @@
                                                         <td class="text-uppercase">{{$material->nama_bahan}}</td>
                                                         <td>
                                                                 <div class="d-flex">
-                                                                        <a class="btn btn-warning text-decoration-none" href="../admin/edit-service"><i class="fa-sharp fa-solid fa-pencil"></i></i></a>
-                                                                        <a class="btn btn-danger text-decoration-none mx-2" href="../admin/edit-service"><i class="fa-solid fa-trash-can"></i></a>
+                                                                        <a class="btn btn-warning text-decoration-none" href="../admin/edit-bahan/{{$material->id}}"><i class="fa-sharp fa-solid fa-pencil"></i></i></a>
+                                                                        <a class="btn btn-danger text-decoration-none mx-2" href="../admin/delete-bahan/{{$material->id}}"><i class="fa-solid fa-trash-can"></i></a>
                                                                 </div>
                                                         </td>
                                                 </tr>

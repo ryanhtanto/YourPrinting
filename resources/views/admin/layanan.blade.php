@@ -12,8 +12,8 @@
                                         <span class="invalid-feedback">@error('nama_service'){{$message}}@enderror</span>
                                 </div>
                                 <button type="submit" class="btn btn-primary">ADD SERVICE NAME</button>
-                        </form>
-                        @if(session('success'))
+                        </form>     
+                        @if (session('success'))
                                 <div class="alert alert-success alert-dismissible fade show mt-3">
                                         {{ session('success') }}
                                 </div>
@@ -33,8 +33,8 @@
                                                         <td class="text-uppercase">{{$service->nama_service}}</td>
                                                         <td>
                                                                 <div class="d-flex">
-                                                                        <a class="btn btn-warning text-decoration-none" href="../admin/edit-service"><i class="fa-sharp fa-solid fa-pencil"></i></i></a>
-                                                                        <a class="btn btn-danger text-decoration-none mx-2" href="../admin/edit-service"><i class="fa-solid fa-trash-can"></i></a>
+                                                                        <a class="btn btn-warning text-decoration-none" href="../admin/edit-layanan/{{$service->id}}"><i class="fa-sharp fa-solid fa-pencil"></i></i></a>
+                                                                        <a class="btn btn-danger text-decoration-none mx-2" href="../admin/delete-layanan/{{$service->id}}"><i class="fa-solid fa-trash-can"></i></a>
                                                                 </div>
                                                         </td>
                                                 </tr>

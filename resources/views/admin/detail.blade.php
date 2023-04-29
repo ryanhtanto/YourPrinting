@@ -35,11 +35,16 @@
         </section>
         <section>
                 <div class="mt-5">
-                        <h5 class="fw-bold">DAFTAR SERVICE TEMPAT PRINTING</h5>
+                        <h5 class="fw-bold text-uppercase">Layanan {{$printing->nama}}</h5>
                         <div class="justify-content-end">
                                 <a class="text-end text-decoration-none text-white" href="../../admin/add-service"><span class="btn btn-dark">Tambah Layanan</span></a>
                         </div>
                 </div>
+                @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show mt-3">
+                                {{ session('success') }}
+                        </div>
+                @endif
                 <div class="row mt-3">
                         <div class="col-lg-5 col-md-5 col-sm-5">
                                 <h5 class="fw-bold">Layanan</h5>
@@ -63,8 +68,8 @@
                                 <h5 class="fw-bold">Action</h5>
                                 @foreach ($daftarServices->daftarService as $daftar)
                                         <div class="d-flex mb-1">
-                                                <a class="btn btn-warning text-decoration-none" href="../admin/edit-service/{{ $daftar->id}}"><i class="fa-sharp fa-solid fa-pencil"></i></i></a>
-                                                <a class="btn btn-danger text-decoration-none mx-2" href="../admin/edit-service"><i class="fa-solid fa-trash-can"></i></a>
+                                                <a class="btn btn-warning text-decoration-none" href="../../admin/edit-service/{{ $daftar->id }}"><i class="fa-sharp fa-solid fa-pencil"></i></i></a>
+                                                <a class="btn btn-danger text-decoration-none mx-2" href="../../admin/delete-service/{{ $daftar->id }}"><i class="fa-solid fa-trash-can"></i></a>
                                         </div>
                                 @endforeach
                         </div>
