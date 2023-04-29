@@ -1,0 +1,57 @@
+<?php
+
+use App\Http\Controllers\BahanController;
+use App\Http\Controllers\RegisterControllers;
+use App\Http\Controllers\LoginControllers;
+use App\Http\Controllers\PrintingController;
+use App\Http\Controllers\RecommendationController;
+use App\Http\Controllers\ServiceController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', [PrintingController::class, 'index']);
+
+Route::get('/detail/{printing:id}', [PrintingController::class, 'show']);
+
+Route::get('/recommendation', [RecommendationController::class, 'index']);
+
+Route::get('/about', function () {
+    return view('user.about');
+});
+
+Route::get('/hasil', function () {
+    return view('user.hasil');
+});
+
+Route::get('/admin/home', [PrintingController::class, 'indexAdmin'])->middleware('auth');
+
+Route::get('/admin/detail/{printing:id}', [PrintingController::class, 'showAdmin'])->middleware('auth');
+
+Route::get('/admin/layanan', [ServiceController::class, 'indexAdmin'])->middleware('auth');
+Route::post('/admin/layanan', [ServiceController::class, 'store']);
+
+Route::get('/admin/bahan', [BahanController::class, 'indexAdmin'])->middleware('auth');
+Route::post('/admin/bahan', [BahanController::class, 'store']);
+
+Route::get('/admin/add-printing', [PrintingController::class, 'indexAddPrinting'])->middleware('auth');
+Route::post('/admin/add-printing', [PrintingController::class, 'storePrinting']);
+
+Route::get('/admin/add-service', [PrintingController::class, 'viewService'])->middleware('auth');
+Route::post('/admin/add-service', [PrintingController::class, 'addService']);
+
+Route::get('/admin/login', [LoginControllers::class, 'index'])->name('login')->middleware('guest');
+Route::post('/admin/login', [LoginControllers::class, 'authenticate']);
+Route::post('/admin/logout', [LoginControllers::class, 'logout']);
+
+Route::get('/admin/register', [RegisterControllers::class, 'index'])->middleware('guest');
+Route::post('/admin/register', [RegisterControllers::class, 'store']);
