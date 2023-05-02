@@ -26,6 +26,7 @@
                                         <p class="m-0">Jenis Layanan : {{$printing->jenis_layanan}}</p>
                                         <p class="m-0">Bahan : {{$printing->bahan}}</p>
                                         <p class="m-0">Harga : {{$printing->harga}}</p>
+                                        <p class="m-0">Respon : {{$printing->respon}}</p>
                                 </div>
                         </div>
                         <div class="col-lg-6">

@@ -68,6 +68,7 @@ class PrintingController extends Controller
             'jenis_layanan' => 'required',
             'bahan' => 'required',
             'harga' => 'required',
+            'respon' => 'required',
         ]);
 
         $printing = new Printing();
@@ -83,7 +84,8 @@ class PrintingController extends Controller
         $printing->jenis_layanan = $request->input('jenis_layanan');
         $printing->bahan = $request->input('bahan');
         $printing->harga = $request->input('harga');
-        
+        $printing->respon = $request->input('respon');
+
         $printing->save();
         
         return redirect('/admin/home')->with('success', "Items added into database!");
@@ -101,6 +103,7 @@ class PrintingController extends Controller
             'jenis_layanan' => 'required',
             'bahan' => 'required',
             'harga' => 'required',
+            'respon' => 'required',
         ]);
 
         $printing->nama = $request->input('nama');
@@ -119,7 +122,8 @@ class PrintingController extends Controller
         $printing->jenis_layanan = $request->input('jenis_layanan');
         $printing->bahan = $request->input('bahan');
         $printing->harga = $request->input('harga');
-        
+        $printing->respon = $request->input('respon');
+
         $printing->save();
 
         return redirect('/admin/home')->with('success', 'Detail printing updated successfully');

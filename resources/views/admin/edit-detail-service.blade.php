@@ -1,5 +1,5 @@
 @extends('main/admin-main')
-{{-- @dd($daftarService->service->nama_service) --}}
+
 @section('container')
         <h5 class="fw-bold">EDIT SERVICE TEMPAT PRINTING</h5>
         @if(session('success'))

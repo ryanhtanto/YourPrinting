@@ -41,25 +41,32 @@
                         <span class="invalid-feedback">@error('picture'){{$message}}@enderror</span>
                 </div>
                 <div class="row">
-                        <div class="col-lg-4 col-sm-4">
+                        <div class="col-lg-3 col-sm-3">
                                 <div class="mb-3">
                                         <label for="jenis_layanan" class="form-label">JENIS LAYANAN</label>
                                         <input type="number" class="form-control @error('jenis_layanan') is-invalid @enderror" id="jenis_layanan" name="jenis_layanan" value="{{ old('jenis_layanan') }}">
                                         <span class="invalid-feedback">@error('jenis_layanan'){{$message}}@enderror</span>
                                 </div>
                         </div>
-                        <div class="col-lg-4 col-sm-4">
+                        <div class="col-lg-3 col-sm-3">
                                 <div class="mb-3">
                                         <label for="bahan" class="form-label">BAHAN</label>
                                         <input type="number" class="form-control @error('bahan') is-invalid @enderror" id="bahan" name="bahan" value="{{ old('bahan') }}">
                                         <span class="invalid-feedback">@error('bahan'){{$message}}@enderror</span>
                                 </div>
                         </div>
-                        <div class="col-lg-4 col-sm-4">
+                        <div class="col-lg-3 col-sm-3">
                                 <div class="mb-3">
                                         <label for="harga" class="form-label">HARGA</label>
                                         <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') }}">
                                         <span class="invalid-feedback">@error('harga'){{$message}}@enderror</span>
+                                </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-3">
+                                <div class="mb-3">
+                                        <label for="respon" class="form-label">RESPON</label>
+                                        <input type="number" class="form-control @error('respon') is-invalid @enderror" id="respon" name="respon" value="{{ old('respon') }}">
+                                        <span class="invalid-feedback">@error('respon'){{$message}}@enderror</span>
                                 </div>
                         </div>
                 </div>
