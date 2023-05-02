@@ -1,38 +1,39 @@
 @extends('main/admin-main')
 
 @section('container')
-        <h5 class="fw-bold">TAMBAH TEMPAT PRINTING</h5>
-        <form class="mt-3" action="/admin/add-printing" method="POST" enctype="multipart/form-data">
+        <h5 class="fw-bold text-uppercase">EDIT DETAIL {{ $detailPrinting->nama }}</h5>
+        <form class="mt-3" action="../../admin/edit-detail/{{$detailPrinting->id}}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="mb-3">
                         <label for="nama" class="form-label">NAMA TEMPAT PRINTING</label>
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" value="{{ old('nama') }}">
+                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" value="{{ $detailPrinting->nama }}">
                         <span class="invalid-feedback">@error('nama'){{$message}}@enderror</span>
                 </div>
                 <div class="mb-3">
                         <label for="alamat" class="form-label">ALAMAT</label>
-                        <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" value="{{ old('alamat') }}">
+                        <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" value="{{ $detailPrinting->alamat }}">
                         <span class="invalid-feedback">@error('alamat'){{$message}}@enderror</span>
                 </div>
                 <div class="row">
                         <div class="col-lg-6 col-sm-12">
                                 <div class="mb-3">
                                         <label for="latitude" class="form-label">LATITUDE</label>
-                                        <input type="text" class="form-control @error('latitude') is-invalid @enderror" id="latitude" name="latitude" value="{{ old('latitude') }}">
+                                        <input type="text" class="form-control @error('latitude') is-invalid @enderror" id="latitude" name="latitude" value="{{ $detailPrinting->latitude }}">
                                         <span class="invalid-feedback">@error('latitude'){{$message}}@enderror</span>
                                 </div>
                         </div>
                         <div class="col-lg-6 col-sm-12">
                                 <div class="mb-3">
                                         <label for="longitude" class="form-label">LONGITUDE</label>
-                                        <input type="text" class="form-control @error('longitude') is-invalid @enderror" id="longitude" name="longitude" value="{{ old('longitude') }}">
+                                        <input type="text" class="form-control @error('longitude') is-invalid @enderror" id="longitude" name="longitude" value="{{ $detailPrinting->longitude }}">
                                         <span class="invalid-feedback">@error('longitude'){{$message}}@enderror</span>
                                 </div>
                         </div>
                 </div>
                 <div class="mb-3">
                         <label for="no_hp" class="form-label">NO. HANDPHONE / WHATSAPP</label>
-                        <input type="text" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp" name="no_hp" value="{{ old('no_hp') }}">
+                        <input type="text" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp" name="no_hp" value="{{ $detailPrinting->no_hp }}">
                         <span class="invalid-feedback">@error('no_hp'){{$message}}@enderror</span>
                 </div>
                 <div class="mb-3">
@@ -44,21 +45,21 @@
                         <div class="col-lg-4 col-sm-4">
                                 <div class="mb-3">
                                         <label for="jenis_layanan" class="form-label">JENIS LAYANAN</label>
-                                        <input type="number" class="form-control @error('jenis_layanan') is-invalid @enderror" id="jenis_layanan" name="jenis_layanan" value="{{ old('jenis_layanan') }}">
+                                        <input type="number" class="form-control @error('jenis_layanan') is-invalid @enderror" id="jenis_layanan" name="jenis_layanan" value="{{ $detailPrinting->jenis_layanan }}">
                                         <span class="invalid-feedback">@error('jenis_layanan'){{$message}}@enderror</span>
                                 </div>
                         </div>
                         <div class="col-lg-4 col-sm-4">
                                 <div class="mb-3">
                                         <label for="bahan" class="form-label">BAHAN</label>
-                                        <input type="number" class="form-control @error('bahan') is-invalid @enderror" id="bahan" name="bahan" value="{{ old('bahan') }}">
+                                        <input type="number" class="form-control @error('bahan') is-invalid @enderror" id="bahan" name="bahan" value="{{ $detailPrinting->bahan }}">
                                         <span class="invalid-feedback">@error('bahan'){{$message}}@enderror</span>
                                 </div>
                         </div>
                         <div class="col-lg-4 col-sm-4">
                                 <div class="mb-3">
                                         <label for="harga" class="form-label">HARGA</label>
-                                        <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') }}">
+                                        <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ $detailPrinting->harga }}">
                                         <span class="invalid-feedback">@error('harga'){{$message}}@enderror</span>
                                 </div>
                         </div>

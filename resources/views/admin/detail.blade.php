@@ -3,7 +3,7 @@
 @section('container')
         <section>       
                 <h5 class="fw-bold">DETAIL TEMPAT PRINTING</h5>
-                <a class="text-end text-decoration-none text-white" href="../admin/edit-detail"><span class="btn btn-dark">EDIT DETAIL</span></a>
+                <a class="text-end text-decoration-none text-white" href="../../admin/edit-detail/{{$printing->id}}"><span class="btn btn-dark">EDIT DETAIL</span></a>
                 <div class="row">
                         <div class="col-lg-6">
                                 <h3 class="fw-bold text-uppercase">{{$printing->nama}}</h3>
