@@ -25,6 +25,11 @@ class Printing extends Model
         return $this->belongsToMany(Material::class, 'tbl_daftar_service', 'id_tempat_printing', 'id_bahan');
     }
 
+    public function size(): BelongsToMany
+    {
+        return $this->belongsToMany(Size::class, 'tbl_daftar_service', 'id_tempat_printing', 'id_ukuran');
+    }
+
     public function daftarService(): HasMany
     {
         return $this->hasMany(DaftarService::class, 'id_tempat_printing');

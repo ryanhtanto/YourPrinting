@@ -27,6 +27,7 @@
                                         <p class="m-0">Bahan : {{$printing->bahan}}</p>
                                         <p class="m-0">Harga : {{$printing->harga}}</p>
                                         <p class="m-0">Respon : {{$printing->respon}}</p>
+                                        <p class="m-0">Ukuran : {{$printing->ukuran}}</p>
                                 </div>
                         </div>
                         <div class="col-lg-6">
@@ -47,16 +48,22 @@
                         </div>
                 @endif
                 <div class="row mt-3">
-                        <div class="col-lg-5 col-md-5 col-sm-5">
+                        <div class="col-lg-4 col-md-5 col-sm-5">
                                 <h5 class="fw-bold">Layanan</h5>
                                 @foreach ($services->service as $serviceList)
                                         <p>{{ $serviceList->nama_service }}</p>
                                 @endforeach
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3">
+                        <div class="col-lg-2 col-md-3 col-sm-3">
                                 <h5 class="fw-bold">Jenis Bahan</h5>
                                 @foreach ($materials->material as $materialList)
                                         <p>{{ $materialList->nama_bahan }}</p>
+                                @endforeach
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                                <h5 class="fw-bold">Ukuran</h5>
+                                @foreach ($sizes->size as $jenisUkuran)
+                                        <p>{{ $jenisUkuran->jenis_ukuran }}</p>
                                 @endforeach
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2">
@@ -65,6 +72,7 @@
                                         <p>Rp. {{ $daftar->harga }}</p>
                                 @endforeach
                         </div>
+                        
                         <div class="col-lg-2 col-md-2 col-sm-2">
                                 <h5 class="fw-bold">Action</h5>
                                 @foreach ($daftarServices->daftarService as $daftar)

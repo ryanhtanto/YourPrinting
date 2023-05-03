@@ -6,6 +6,7 @@ use App\Models\DaftarService;
 use App\Models\Material;
 use App\Models\Printing;
 use App\Models\Service;
+use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -41,6 +42,7 @@ class PrintingController extends Controller
             'daftarServices' => $printing,
             'services' => $printing,
             'materials' => $printing,
+            'sizes' => $printing,
         ]);
     }
 
@@ -69,6 +71,7 @@ class PrintingController extends Controller
             'bahan' => 'required',
             'harga' => 'required',
             'respon' => 'required',
+            'ukuran' => 'required',
         ]);
 
         $printing = new Printing();
@@ -85,6 +88,7 @@ class PrintingController extends Controller
         $printing->bahan = $request->input('bahan');
         $printing->harga = $request->input('harga');
         $printing->respon = $request->input('respon');
+        $printing->ukuran = $request->input('ukuran');
 
         $printing->save();
         
@@ -104,6 +108,7 @@ class PrintingController extends Controller
             'bahan' => 'required',
             'harga' => 'required',
             'respon' => 'required',
+            'ukuran' => 'required',
         ]);
 
         $printing->nama = $request->input('nama');
@@ -123,6 +128,7 @@ class PrintingController extends Controller
         $printing->bahan = $request->input('bahan');
         $printing->harga = $request->input('harga');
         $printing->respon = $request->input('respon');
+        $printing->ukuran = $request->input('ukuran');
 
         $printing->save();
 
@@ -135,6 +141,7 @@ class PrintingController extends Controller
             'printings' => Printing::all(),
             'services' => Service::all(),
             'materials' => Material::all(),
+            'sizes' => Size::all(),
         ]);
     }
 
@@ -144,6 +151,7 @@ class PrintingController extends Controller
             'printings' => Printing::all(),
             'services' => Service::all(),
             'materials' => Material::all(),
+            'sizes' => Size::all(),
             'daftarService' => $daftarService,
         ]);
     }
@@ -154,6 +162,7 @@ class PrintingController extends Controller
             'id_tempat_printing' => 'required',
             'id_service' => 'required',
             'id_bahan' => 'required',
+            'id_ukuran' => 'required',
             'harga' => 'required'
         ]);
 
@@ -175,6 +184,7 @@ class PrintingController extends Controller
        
         $daftarService->id_bahan = $request->input('id_bahan');
         $daftarService->id_service = $request->input('id_service');
+        $daftarService->id_ukuran = $request->input('id_ukuran');
         $daftarService->harga = $request->input('harga');
 
         $daftarService->save();

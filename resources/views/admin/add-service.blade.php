@@ -46,6 +46,18 @@
                         </div>
                 </div>
                 <div class="mb-3">
+                        <div>
+                                <label for="ukuran" class="form-label">JENIS UKURAN</label>
+                                <select class="form-select @error('id_ukuran') is-invalid @enderror" id="ukuran" name="id_ukuran">
+                                        <option selected>Open this select menu</option>
+                                        @foreach($sizes as $size)
+                                                <option value="{{ $size->id }}" class="text-uppercase">{{ $size->jenis_ukuran }}</option>
+                                        @endforeach
+                                </select>
+                                <span class="invalid-feedback">@error('id_ukuran'){{$message}}@enderror</span>
+                        </div>
+                </div>
+                <div class="mb-3">
                         <label for="harga" class="form-label">HARGA</label>
                         <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') }}">
                         <span class="invalid-feedback">@error('harga'){{$message}}@enderror</span>

@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginControllers;
 use App\Http\Controllers\PrintingController;
 use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SizeControllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +60,12 @@ Route::get('/admin/edit-service/{daftarService:id}', [PrintingController::class,
 Route::put('/admin/edit-service/{daftarService:id}', [PrintingController::class, 'editDaftarService']);
 Route::post('/admin/add-service', [PrintingController::class, 'addService']);
 Route::get('/admin/delete-service/{daftarService:id}', [PrintingController::class, 'destroy'])->middleware('auth');
+
+Route::get('/admin/ukuran', [SizeControllers::class, 'indexAdmin'])->middleware('auth');
+Route::get('/admin/delete-ukuran/{size:id}', [SizeControllers::class, 'destroy'])->middleware('auth');
+Route::post('/admin/ukuran', [SizeControllers::class, 'store']);
+Route::get('/admin/edit-ukuran/{size:id}', [SizeControllers::class, 'findUpdate'])->middleware('auth');
+Route::put('/admin/edit-ukuran/{size:id}', [SizeControllers::class, 'update']);
 
 Route::get('/admin/login', [LoginControllers::class, 'index'])->name('login')->middleware('guest');
 Route::post('/admin/login', [LoginControllers::class, 'authenticate']);

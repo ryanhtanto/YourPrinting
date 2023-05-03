@@ -20,6 +20,7 @@ class DaftarService extends Model
         'id_tempat_printing',
         'id_bahan',
         'id_service',
+        'id_ukuran',
         'harga'
     ];
 
@@ -35,6 +36,10 @@ class DaftarService extends Model
     public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class, 'id_service');
+    }
+    public function ukuran(): BelongsTo
+    {
+        return $this->belongsTo(Size::class, 'id_ukuran');
     }
 
 }

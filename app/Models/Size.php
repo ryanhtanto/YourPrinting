@@ -10,4 +10,10 @@ class Size extends Model
     use HasFactory;
 
     protected $table = 'tbl_ukuran';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'jenis_ukuran'
+    ];
 }

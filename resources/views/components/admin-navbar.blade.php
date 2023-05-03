@@ -13,6 +13,9 @@
                                 <a href="../../admin/bahan" class="list-group-item list-group-item-action py-2 ripple">
                                         BAHAN
                                 </a>
+                                <a href="../../admin/ukuran" class="list-group-item list-group-item-action py-2 ripple">
+                                        UKURAN
+                                </a>
                                 <a href="../../admin/add-printing" class="list-group-item list-group-item-action py-2 ripple">
                                         TAMBAH PRINTING
                                 </a>

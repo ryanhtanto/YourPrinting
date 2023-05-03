@@ -14,10 +14,8 @@
                 <div class="text-center mt-4">
                         <div class="row align-items-start">
                                 <div class="col-lg-4">
-                                        <div>
-                                                <h1 class="fw-bold fs-1"> 1</h1>
-                                                <p>Akses link <br>https://sistemrekomendasitempatprinting.com</p>
-                                        </div>
+                                        <h1 class="fw-bold fs-1"> 1</h1>
+                                        <p>Akses link <br>https://sistemrekomendasitempatprinting.com</p>
                                 </div>
                                 <div class="col-lg-4">
                                         <h1 class="fw-bold fs-1">2</h1>

@@ -25,9 +25,9 @@ class BahanController extends Controller
 
         return redirect()->back()->with('success', 'Nama bahan uploaded successfully.');;
     }
-    public function destroy(Material $bahan)
+    public function destroy(Material $material)
     {
-        $bahan = Material::find($bahan);
+        $bahan = Material::find($material);
         if ($bahan) {
             $bahan->each->delete();
             return back()->with('success', 'Bahan has been deleted');
