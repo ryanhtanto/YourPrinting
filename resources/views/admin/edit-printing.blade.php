@@ -41,59 +41,6 @@
                         <input class="form-control form-control-sm @error('picture') is-invalid @enderror" id="picture" type="file" name="picture">
                         <span class="invalid-feedback">@error('picture'){{$message}}@enderror</span>
                 </div>
-                <div class="row align-items-start">
-                        <div class="col-lg-4">
-                                <div class="mb-3">
-                                        <label for="jenis_layanan" class="form-label">JENIS LAYANAN</label>
-                                        <input type="number" class="form-control @error('jenis_layanan') is-invalid @enderror" id="jenis_layanan" name="jenis_layanan" value="{{ $detailPrinting->jenis_layanan }}">
-                                        <span class="invalid-feedback">@error('jenis_layanan'){{$message}}@enderror</span>
-                                </div>
-                        </div>
-                        <div class="col-lg-4">
-                                <div class="mb-3">
-                                        <label for="bahan" class="form-label">BAHAN</label>
-                                        <input type="number" class="form-control @error('bahan') is-invalid @enderror" id="bahan" name="bahan" value="{{ $detailPrinting->bahan }}">
-                                        <span class="invalid-feedback">@error('bahan'){{$message}}@enderror</span>
-                                </div>
-                        </div>
-                        <div class="col-lg-4">
-                                <div class="mb-3">
-                                        <label for="harga" class="form-label">HARGA</label>
-                                        <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ $detailPrinting->harga }}">
-                                        <span class="invalid-feedback">@error('harga'){{$message}}@enderror</span>
-                                </div>
-                        </div>
-                </div>
-                <div class="row justify-content-center">
-                        <div class="col-lg-4">
-                                <div class="mb-3">
-                                        <label for="respon" class="form-label">RESPON</label>
-                                        <input type="number" class="form-control @error('respon') is-invalid @enderror" id="respon" name="respon" value="{{ $detailPrinting->respon }}">
-                                        <span class="invalid-feedback">@error('respon'){{$message}}@enderror</span>
-                                </div>
-                        </div>
-                        <div class="col-lg-4">
-                                <div class="mb-3">
-                                        <label for="ukuran" class="form-label">UKURAN</label>
-                                        <input type="number" class="form-control @error('ukuran') is-invalid @enderror" id="ukuran" name="ukuran" value="{{ $detailPrinting->ukuran }}">
-                                        <span class="invalid-feedback">@error('ukuran'){{$message}}@enderror</span>
-                                </div>
-                        </div>
-                </div>
-                {{-- <div class="row">
-                        <div class="col-lg-3 col-sm-3">
-                                
-                        </div>
-                        <div class="col-lg-3 col-sm-3">
-                                
-                        </div>
-                        <div class="col-lg-3 col-sm-3">
-                                
-                        </div>
-                        <div class="col-lg-3 col-sm-3">
-                               
-                        </div>
-                </div> --}}
                 <div class="d-flex justify-content-end mt-3"> 
                         <button type="submit" class="btn btn-primary">Submit</button>
                 </div>  

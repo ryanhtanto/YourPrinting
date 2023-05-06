@@ -21,14 +21,15 @@
                                                 <p class="mt-0 mx-2">{{$printing->alamat}}</p>
                                         </div>
                                 </div>
-                                <div>
-                                        <p class="fw-bold mb-0">Bobot Alternatif Tempat Printing</p>
-                                        <p class="m-0">Jenis Layanan : {{$printing->jenis_layanan}}</p>
-                                        <p class="m-0">Bahan : {{$printing->bahan}}</p>
-                                        <p class="m-0">Harga : {{$printing->harga}}</p>
-                                        <p class="m-0">Respon : {{$printing->respon}}</p>
-                                        <p class="m-0">Ukuran : {{$printing->ukuran}}</p>
-                                </div>
+                                <h6 class="fw-bold">Bobot Alternatif Tempat Printing</h6>
+                                @foreach ($daftarServices->daftarService as $daftar)
+                                        <p class="m-0">Jenis Layanan: {{ $daftar->bobot_jenis_layanan }}</p>
+                                        <p class="m-0">Bahan: {{ $daftar->bobot_bahan }}</p>
+                                        <p class="m-0">Harga: {{ $daftar->bobot_harga }}</p>
+                                        <p class="m-0">Respon: {{ $daftar->bobot_respon }}</p>
+                                        <p class="m-0">Ukuran: {{ $daftar->bobot_ukuran }}</p>   
+                                        @break   
+                                @endforeach
                         </div>
                         <div class="col-lg-6">
                                 <img src="https://source.unsplash.com/500x300?technology" class="card-img-top" alt="banner"> 
@@ -47,41 +48,48 @@
                                 {{ session('success') }}
                         </div>
                 @endif
-                <div class="row mt-3">
-                        <div class="col-lg-4 col-md-5 col-sm-5">
-                                <h5 class="fw-bold">Layanan</h5>
-                                @foreach ($services->service as $serviceList)
-                                        <p>{{ $serviceList->nama_service }}</p>
-                                @endforeach
-                        </div>
-                        <div class="col-lg-2 col-md-3 col-sm-3">
-                                <h5 class="fw-bold">Jenis Bahan</h5>
-                                @foreach ($materials->material as $materialList)
-                                        <p>{{ $materialList->nama_bahan }}</p>
-                                @endforeach
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2">
-                                <h5 class="fw-bold">Ukuran</h5>
-                                @foreach ($sizes->size as $jenisUkuran)
-                                        <p>{{ $jenisUkuran->jenis_ukuran }}</p>
-                                @endforeach
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-2">
-                                <h5 class="fw-bold">Harga</h5>
-                                @foreach ($daftarServices->daftarService as $daftar)
-                                        <p>Rp. {{ $daftar->harga }}</p>
-                                @endforeach
-                        </div>
-                        
-                        <div class="col-lg-2 col-md-2 col-sm-2">
-                                <h5 class="fw-bold">Action</h5>
-                                @foreach ($daftarServices->daftarService as $daftar)
-                                        <div class="d-flex mb-1">
-                                                <a class="btn btn-warning text-decoration-none" href="../../admin/edit-service/{{ $daftar->id }}"><i class="fa-sharp fa-solid fa-pencil"></i></i></a>
-                                                <a class="btn btn-danger text-decoration-none mx-2" href="../../admin/delete-service/{{ $daftar->id }}"><i class="fa-solid fa-trash-can"></i></a>
-                                        </div>
-                                @endforeach
-                        </div>
-                </div>
+                <table class="table">
+                        <thead>
+                                <tr>
+                                        <th scope="col">Layanan</th>
+                                        <th scope="col">Jenis Bahan</th>
+                                        <th scope="col">Ukuran</th>
+                                        <th scope="col">Harga</th>
+                                        <th scope="col">Action</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                <tr>
+                                        <td>
+                                                @foreach ($services->service as $serviceList)
+                                                        <p>{{ $serviceList->nama_service }}</p>
+                                                @endforeach
+                                        </td>
+                                        <td>
+                                                @foreach ($materials->material as $materialList)
+                                                        <p>{{ $materialList->nama_bahan }}</p>
+                                                @endforeach
+                                        </td>
+                                        <td>
+                                                @foreach ($sizes->size as $jenisUkuran)
+                                                        <p>{{ $jenisUkuran->jenis_ukuran }}</p>
+                                                @endforeach
+                                        </td>
+                                        <td>
+                                                @foreach ($daftarServices->daftarService as $daftar)
+                                                        <p>Rp. {{ $daftar->harga }}</p>
+                                                @endforeach
+                                        </td>
+                                        <td>
+                                                @foreach ($daftarServices->daftarService as $daftar)
+                                                        <div class="d-flex mb-1">
+                                                                <a class="btn btn-warning text-decoration-none" href="../../admin/edit-service/{{ $daftar->id }}"><i class="fa-sharp fa-solid fa-pencil"></i></i></a>
+                                                                <a class="btn btn-danger text-decoration-none mx-2" href="../../admin/delete-service/{{ $daftar->id }}"><i class="fa-solid fa-trash-can"></i></a>
+                                                        </div>
+                                                @endforeach
+                                        </td>
+                                </tr>
+                        </tbody>
+                </table>
         </section>
 @endsection

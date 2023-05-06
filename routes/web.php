@@ -25,6 +25,7 @@ Route::get('/', [PrintingController::class, 'index']);
 Route::get('/detail/{printing:id}', [PrintingController::class, 'show']);
 
 Route::get('/recommendation', [RecommendationController::class, 'index']);
+Route::post('/recommendation', [RecommendationController::class, 'submitForm']);
 
 Route::get('/about', function () {
     return view('user.about');

@@ -17,16 +17,16 @@
                 <div class="row">
                         <div class="col-lg-6 col-sm-12">
                                 <div class="mb-3">
-                                        <label for="latitude" class="form-label">LATITUDE</label>
-                                        <input type="text" class="form-control @error('latitude') is-invalid @enderror" id="latitude" name="latitude" value="{{ old('latitude') }}">
-                                        <span class="invalid-feedback">@error('latitude'){{$message}}@enderror</span>
+                                        <label for="longitude" class="form-label">LONGITUDE</label>
+                                        <input type="text" class="form-control @error('longitude') is-invalid @enderror" id="longitude" name="longitude" value="{{ old('longitude') }}">
+                                        <span class="invalid-feedback">@error('longitude'){{$message}}@enderror</span>
                                 </div>
                         </div>
                         <div class="col-lg-6 col-sm-12">
                                 <div class="mb-3">
-                                        <label for="longitude" class="form-label">LONGITUDE</label>
-                                        <input type="text" class="form-control @error('longitude') is-invalid @enderror" id="longitude" name="longitude" value="{{ old('longitude') }}">
-                                        <span class="invalid-feedback">@error('longitude'){{$message}}@enderror</span>
+                                        <label for="latitude" class="form-label">LATITUDE</label>
+                                        <input type="text" class="form-control @error('latitude') is-invalid @enderror" id="latitude" name="latitude" value="{{ old('latitude') }}">
+                                        <span class="invalid-feedback">@error('latitude'){{$message}}@enderror</span>
                                 </div>
                         </div>
                 </div>
@@ -39,45 +39,6 @@
                         <label for="picture" class="form-label">PHOTO/IMAGE</label>
                         <input class="form-control form-control-sm @error('picture') is-invalid @enderror" id="picture" type="file" name="picture">
                         <span class="invalid-feedback">@error('picture'){{$message}}@enderror</span>
-                </div>
-                <div class="row align-items-start">
-                        <div class="col-lg-4">
-                                <div class="mb-3">
-                                        <label for="jenis_layanan" class="form-label">JENIS LAYANAN</label>
-                                        <input type="number" class="form-control @error('jenis_layanan') is-invalid @enderror" id="jenis_layanan" name="jenis_layanan" value="{{ old('jenis_layanan') }}">
-                                        <span class="invalid-feedback">@error('jenis_layanan'){{$message}}@enderror</span>
-                                </div>
-                        </div>
-                        <div class="col-lg-4">
-                                <div class="mb-3">
-                                        <label for="bahan" class="form-label">BAHAN</label>
-                                        <input type="number" class="form-control @error('bahan') is-invalid @enderror" id="bahan" name="bahan" value="{{ old('bahan') }}">
-                                        <span class="invalid-feedback">@error('bahan'){{$message}}@enderror</span>
-                                </div>
-                        </div>
-                        <div class="col-lg-4">
-                                <div class="mb-3">
-                                        <label for="harga" class="form-label">HARGA</label>
-                                        <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') }}">
-                                        <span class="invalid-feedback">@error('harga'){{$message}}@enderror</span>
-                                </div>
-                        </div>
-                </div>
-                <div class="row justify-content-center">
-                        <div class="col-lg-4">
-                                <div class="mb-3">
-                                        <label for="respon" class="form-label">RESPON</label>
-                                        <input type="number" class="form-control @error('respon') is-invalid @enderror" id="respon" name="respon" value="{{ old('respon') }}">
-                                        <span class="invalid-feedback">@error('respon'){{$message}}@enderror</span>
-                                </div>
-                        </div>
-                        <div class="col-lg-4">
-                                <div class="mb-3">
-                                        <label for="ukuran" class="form-label">UKURAN</label>
-                                        <input type="number" class="form-control @error('ukuran') is-invalid @enderror" id="ukuran" name="ukuran" value="{{ old('ukuran') }}">
-                                        <span class="invalid-feedback">@error('ukuran'){{$message}}@enderror</span>
-                                </div>
-                        </div>
                 </div>
                 <div class="d-flex justify-content-end mt-3"> 
                         <button type="submit" class="btn btn-primary">Submit</button>

@@ -60,6 +60,45 @@
                         <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{$daftarService->harga}}">
                         <span class="invalid-feedback">@error('harga'){{$message}}@enderror</span>
                 </div>
+                <div class="row align-items-start">
+                        <div class="col-lg-4">
+                                <div class="mb-3">
+                                        <label for="bobot_jenis_layanan" class="form-label">JENIS LAYANAN</label>
+                                        <input type="number" class="form-control @error('bobot_jenis_layanan') is-invalid @enderror" id="bobot_jenis_layanan" name="bobot_jenis_layanan" value="{{ $daftarService->bobot_jenis_layanan }}">
+                                        <span class="invalid-feedback">@error('bobot_jenis_layanan'){{$message}}@enderror</span>
+                                </div>
+                        </div>
+                        <div class="col-lg-4">
+                                <div class="mb-3">
+                                        <label for="bobot_bahan" class="form-label">BAHAN</label>
+                                        <input type="number" class="form-control @error('bobot_bahan') is-invalid @enderror" id="bobot_bahan" name="bobot_bahan" value="{{ $daftarService->bobot_bahan }}">
+                                        <span class="invalid-feedback">@error('bobot_bahan'){{$message}}@enderror</span>
+                                </div>
+                        </div>
+                        <div class="col-lg-4">
+                                <div class="mb-3">
+                                        <label for="bobot_harga" class="form-label">HARGA</label>
+                                        <input type="number" class="form-control @error('bobot_harga') is-invalid @enderror" id="bobot_harga" name="bobot_harga" value="{{ $daftarService->bobot_harga }}">
+                                        <span class="invalid-feedback">@error('bobot_harga'){{$message}}@enderror</span>
+                                </div>
+                        </div>
+                </div>
+                <div class="row justify-content-center">
+                        <div class="col-lg-4">
+                                <div class="mb-3">
+                                        <label for="bobot_respon" class="form-label">RESPON</label>
+                                        <input type="number" class="form-control @error('bobot_respon') is-invalid @enderror" id="bobot_respon" name="bobot_respon" value="{{ $daftarService->bobot_respon }}">
+                                        <span class="invalid-feedback">@error('bobot_respon'){{$message}}@enderror</span>
+                                </div>
+                        </div>
+                        <div class="col-lg-4">
+                                <div class="mb-3">
+                                        <label for="bobot_ukuran" class="form-label">UKURAN</label>
+                                        <input type="number" class="form-control @error('bobot_ukuran') is-invalid @enderror" id="bobot_ukuran" name="bobot_ukuran" value="{{ $daftarService->bobot_ukuran }}">
+                                        <span class="invalid-feedback">@error('bobot_ukuran'){{$message}}@enderror</span>
+                                </div>
+                        </div>
+                </div>
                 <div class="d-flex justify-content-end mt-3"> 
                         <button type="submit" class="btn btn-primary">Submit</button>
                 </div>  

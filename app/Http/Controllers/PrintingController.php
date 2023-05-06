@@ -67,11 +67,6 @@ class PrintingController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'picture' => 'required',
-            'jenis_layanan' => 'required',
-            'bahan' => 'required',
-            'harga' => 'required',
-            'respon' => 'required',
-            'ukuran' => 'required',
         ]);
 
         $printing = new Printing();
@@ -84,11 +79,6 @@ class PrintingController extends Controller
         $filename = $request->file('picture')->getClientOriginalName();
         $printing->picture = $filename;
         $request->file('picture')->move(public_path('images'),$filename);
-        $printing->jenis_layanan = $request->input('jenis_layanan');
-        $printing->bahan = $request->input('bahan');
-        $printing->harga = $request->input('harga');
-        $printing->respon = $request->input('respon');
-        $printing->ukuran = $request->input('ukuran');
 
         $printing->save();
         
@@ -104,11 +94,6 @@ class PrintingController extends Controller
             'no_hp' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
-            'jenis_layanan' => 'required',
-            'bahan' => 'required',
-            'harga' => 'required',
-            'respon' => 'required',
-            'ukuran' => 'required',
         ]);
 
         $printing->nama = $request->input('nama');
@@ -124,11 +109,6 @@ class PrintingController extends Controller
             $printing->picture = $filename;
             $request->file('picture')->move(public_path('images'),$filename);
         }
-        $printing->jenis_layanan = $request->input('jenis_layanan');
-        $printing->bahan = $request->input('bahan');
-        $printing->harga = $request->input('harga');
-        $printing->respon = $request->input('respon');
-        $printing->ukuran = $request->input('ukuran');
 
         $printing->save();
 
@@ -163,7 +143,12 @@ class PrintingController extends Controller
             'id_service' => 'required',
             'id_bahan' => 'required',
             'id_ukuran' => 'required',
-            'harga' => 'required'
+            'harga' => 'required',
+            'bobot_jenis_layanan' => 'required',
+            'bobot_bahan' => 'required',
+            'bobot_harga' => 'required',
+            'bobot_respon' => 'required',
+            'bobot_ukuran' => 'required',
         ]);
 
         DaftarService::create($validated);
@@ -175,7 +160,12 @@ class PrintingController extends Controller
     {
         $daftarService = DaftarService::find($id);
         $request->validate([
-            'harga' => 'required'
+            'harga' => 'required',
+            'bobot_jenis_layanan' => 'required',
+            'bobot_bahan' => 'required',
+            'bobot_harga' => 'required',
+            'bobot_respon' => 'required',
+            'bobot_ukuran' => 'required',
         ]);
 
         if($request->input('id_tempat_printing')){
@@ -186,6 +176,11 @@ class PrintingController extends Controller
         $daftarService->id_service = $request->input('id_service');
         $daftarService->id_ukuran = $request->input('id_ukuran');
         $daftarService->harga = $request->input('harga');
+        $daftarService->bobot_jenis_layanan = $request->input('bobot_jenis_layanan');
+        $daftarService->bobot_bahan = $request->input('bobot_bahan');
+        $daftarService->bobot_harga = $request->input('bobot_harga');
+        $daftarService->bobot_respon = $request->input('bobot_respon');
+        $daftarService->bobot_ukuran = $request->input('bobot_ukuran');
 
         $daftarService->save();
 

@@ -21,7 +21,12 @@ class DaftarService extends Model
         'id_bahan',
         'id_service',
         'id_ukuran',
-        'harga'
+        'harga',
+        'bobot_jenis_layanan',
+        'bobot_bahan',
+        'bobot_harga',
+        'bobot_respon',
+        'bobot_ukuran',
     ];
 
     
