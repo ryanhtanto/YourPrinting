@@ -17,8 +17,12 @@ return new class extends Migration
             $table->foreignId('id_service');
             $table->foreignId('id_ukuran');
             $table->foreignId('id_bahan');
-            $table->string('warna');
-            $table->float('harga', 8);
+            $table->integer('harga');
+            $table->integer('bobot_jenis_layanan');
+            $table->integer('bobot_bahan');
+            $table->integer('bobot_harga');
+            $table->integer('bobot_respon');
+            $table->integer('bobot_ukuran');
         });
     }
 

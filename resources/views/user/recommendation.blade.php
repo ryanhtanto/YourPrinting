@@ -47,6 +47,88 @@
                                 @endforeach
                         </div>
                 </div>
+                <div class="mt-5">
+                        <p class="fw-bold text-uppercase">Harga</p>
+                        <div class="row">
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="harga" id="10000" value="10000">
+                                        <label class="form-check-label" for="10000">
+                                                Rp. 1.000 - 10.000
+                                        </label>
+                                </div>
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="harga" id="50000" value="50000">
+                                        <label class="form-check-label" for="50000">
+                                                Rp. 11.000 - 50.000
+                                        </label>
+                                </div>
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="harga" id="100000" value="100000">
+                                        <label class="form-check-label" for="100000">
+                                                Rp. 51.000 - 100.000
+                                        </label>
+                                </div>
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="harga" id="150000" value="150000">
+                                        <label class="form-check-label" for="150000">
+                                                Rp. 101.000 - 150.000
+                                        </label>
+                                </div>
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="harga" id="200000" value="200000">
+                                        <label class="form-check-label" for="200000">
+                                                Rp. 151.000 - 200.000
+                                        </label>
+                                </div>
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="harga" id="300000" value="300000">
+                                        <label class="form-check-label" for="300000">
+                                                Rp. 201.000 - 300.000
+                                        </label>
+                                </div>
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="harga" id="400000" value="400000">
+                                        <label class="form-check-label" for="400000">
+                                                Rp. 301.000 - 400.000
+                                        </label>
+                                </div>
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="harga" id="500000" value="500000">
+                                        <label class="form-check-label" for="500000">
+                                                Rp. 401.000 - 500.000
+                                        </label>
+                                </div>
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="harga" id="700000" value="700000">
+                                        <label class="form-check-label" for="700000">
+                                                Rp. 501.000 - 700.000
+                                        </label>
+                                </div>
+                        </div>
+                </div>
+                <div class="mt-5">
+                        <p class="fw-bold text-uppercase">Jarak</p>
+                        <div class="row">
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="jarak" id="1" value="1">
+                                        <label class="form-check-label" for="1">
+                                                < 1 KM
+                                        </label>
+                                </div>
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="jarak" id="3" value="3">
+                                        <label class="form-check-label" for="3">
+                                                1 - 3 KM
+                                        </label>
+                                </div>
+                                <div class="col-lg-4">
+                                        <input class="form-check-input" type="radio" name="jarak" id="10" value="10">
+                                        <label class="form-check-label" for="10">
+                                                3 - 10 KM
+                                        </label>
+                                </div>
+                        </div>
+                </div>
                 <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>
 @endsection

@@ -9,6 +9,8 @@
                                 <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Nama Tempat </th>
+                                        <th scope="col">Alamat</th>
+                                        <th scope="col">No Hp</th>
                                         <th scope="col">Jenis Layanan</th>
                                         <th scope="col">Jenis Bahan</th>
                                         <th scope="col">Ukuran</th>
@@ -19,11 +21,13 @@
                                 @foreach($places as $place)
                                         <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $place->id_tempat_printing}}</td>
-                                                <td>{{ $place->id_service}}</td>
-                                                <td>{{ $place->id_bahan}}</td>
-                                                <td>{{ $place->id_ukuran}}</td>
-                                                <td>Rp. {{ $place->harga}}</td>
+                                                <td>{{ $place->nama}}</td>
+                                                <td>{{ $place->alamat}}</td>
+                                                <td>{{ $place->no_hp}}</td>
+                                                <td>{{ $place->nama_service}}</td>
+                                                <td>{{ $place->nama_bahan}}</td>
+                                                <td>{{ $place->jenis_ukuran}}</td>
+                                                <td>Rp. {{ number_format($place->harga) }}</td>
                                         </tr>
                                 @endforeach
                         </tbody>

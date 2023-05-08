@@ -31,10 +31,6 @@ Route::get('/about', function () {
     return view('user.about');
 });
 
-Route::get('/hasil', function () {
-    return view('user.hasil');
-});
-
 Route::get('/admin/home', [PrintingController::class, 'indexAdmin'])->middleware('auth');
 
 Route::get('/admin/detail/{printing:id}', [PrintingController::class, 'showAdmin'])->middleware('auth');
