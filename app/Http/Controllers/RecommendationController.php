@@ -77,12 +77,11 @@ class RecommendationController extends Controller
                 array_push($hasil_vektor, $hasil_vektor_satuan);
             }
             
-            dd($hasil_vektor, $places);
             //sorting places by descending depends on Vector value
 
             return view('user.hasil-rekomendasi', [
                 'places' => $places,
-                // 'hasil_vektor' => $hasil_vektor,
+                'hasil_vektor' => $hasil_vektor,
             ]);
         }else{
             echo 'tidak ada data';
