@@ -5,7 +5,7 @@
                 <h3 class="fw-bold text-center">HASIL REKOMENDASI TEMPAT PRINTING</h3>
                 <p class="text-center">Berdasarkan kriteria yang sudah anda masukkan, maka <br> hasil rekomendasi tempat printing terbaik akan dijabarkan dibawah ini</p>
                 <div class="row">
-                        <div class="col-lg-11">
+                        <div class="">
                                 <table class="table">
                                         <thead>
                                                 <tr>
@@ -17,6 +17,9 @@
                                                         <th scope="col">Jenis Bahan</th>
                                                         <th scope="col">Ukuran</th>
                                                         <th scope="col">Harga</th>
+                                                        <th scope="col">Jarak</th>
+                                                        {{-- <th scope="col">Link Maps</th> --}}
+                                                        <th scope="col">Hasil Vektor</th>
                                                 </tr>
                                         </thead>
                                         <tbody>
@@ -30,28 +33,17 @@
                                                                 <td>{{ $place->nama_bahan}}</td>
                                                                 <td>{{ $place->jenis_ukuran}}</td>
                                                                 <td>Rp. {{ number_format($place->harga) }}</td>
-                                                        </tr>
-                                                @endforeach
-                                        </tbody>
-                                </table>
-                        </div>
-                        <div class="col-lg-1">
-                                <table class="table">
-                                        <thead>
-                                                <tr>
-                                                        <th scope="col">Nilai Vektor</th>
-                                                </tr>
-                                        </thead>
-                                        <tbody>
-                                                @foreach($hasil_vektor as $vektor)
-                                                        <tr>
-                                                                <td scope="row">{{ $vektor }}</td>
+                                                                <td>{{ round($place->distance,2)}} KM</td>
+                                                                {{-- <td>
+                                                                        <a href="https://www.google.com/maps/search/?api=1&query={{ $place->latitude}},{{ $place->longitude}}">Link Maps</a>
+                                                                        <a href="https://www.google.com/maps/search/?api=1&query={{ $place->nama }}">Link Maps</a>
+                                                                </td> --}}
+                                                                <td>{{ round($place->weightedValue, 2)}}</td>
                                                         </tr>
                                                 @endforeach
                                         </tbody>
                                 </table>
                         </div>
                 </div>
-                
         </section>
 @endsection

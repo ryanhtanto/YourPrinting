@@ -1,30 +1,74 @@
 @extends('main/main')
 
 @section('container')
-        <h3 class="fw-bold">REKOMENDASI TEMPAT <br>PRINTING</h3>
+        <h3 class="fw-bold">REKOMENDASI TEMPAT PRINTING</h3>
         <form method="POST" action="/recommendation">
                 @csrf
-                <div class="mt-3">
+                <div class="mb-3">
+                        <div>
+                                <label for="layanan" class="form-label">JENIS LAYANAN</label>
+                                <select class="form-select @error('id_service') is-invalid @enderror" id="layanan" name="id_service">
+                                        <option selected value="">Open this select menu</option>
+                                        @foreach($services as $service)
+                                                <option value="{{ $service->id }}" class="text-uppercase">{{ $service->nama_service }}</option>
+                                        @endforeach
+                                </select>
+                                <span class="invalid-feedback">@error('id_service'){{$message}}@enderror</span>
+                        </div>
+                </div>
+                <div class="mb-3">
+                        <div>
+                                <label for="bahan" class="form-label">JENIS BAHAN</label>
+                                <select class="form-select @error('id_bahan') is-invalid @enderror" id="bahan" name="id_bahan">
+                                        <option selected value="">Open this select menu</option>
+                                        @foreach($materials as $material)
+                                                <option value="{{ $material->id }}" class="text-uppercase">{{ $material->nama_bahan }}</option>
+                                        @endforeach
+                                </select>
+                                <span class="invalid-feedback">@error('id_bahan'){{$message}}@enderror</span>
+                        </div>
+                </div>
+                <div class="mb-3">
+                        <div>
+                                <label for="ukuran" class="form-label">JENIS UKURAN</label>
+                                <select class="form-select @error('id_ukuran') is-invalid @enderror" id="ukuran" name="id_ukuran">
+                                        <option selected value="">Open this select menu</option>
+                                        @foreach($sizes as $size)
+                                                <option value="{{ $size->id }}" class="text-uppercase">{{ $size->jenis_ukuran }}</option>
+                                        @endforeach
+                                </select>
+                                <span class="invalid-feedback">@error('id_ukuran'){{$message}}@enderror</span>
+                        </div>
+                </div>
+                {{-- <div class="mt-3">
                         <p class="fw-bold text-uppercase">Jenis Layanan</p>
                         <div class="row">
                                 @foreach ($services as $service)
                                         <div class="col-lg-4">
                                                 <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="id_service" id="{{ $service->id }}" value="{{ $service->id }}">
-                                                        <label class="form-check-label text-uppercase" for="{{ $service->id }}">
+                                                        <input class="form-check-input" type="radio" name="id_service" id="layanan" value="{{ $service->id }}">
+                                                        <label class="form-check-label text-uppercase" for="layanan">
                                                                 {{ $service->nama_service }}
                                                         </label>
                                                 </div>
                                         </div>
                                 @endforeach
                         </div>
-                </div>
-                <div class="mt-5">
+                </div> --}}
+                {{-- <div id="filtered-data"></div>
+                @if(count($hasil) > 0)
+                        @foreach($hasil as $data)
+                                <p>{{ $data->id_bahan }}</p>
+                        @endforeach
+                @else
+                        <p>No data found</p>
+                @endif --}}
+                {{-- <div class="mt-5">
                         <p class="fw-bold text-uppercase">Jenis Bahan</p>
                         <div class="row">
                                 @foreach ($materials as $material)
                                         <div class="col-lg-4">
-                                                <div class="form-check">
+                                                <div class="form-check" id="filtered-data">
                                                         <input class="form-check-input" type="radio" name="id_bahan" id="{{ $material->nama_bahan }}" value="{{ $material->id }}">
                                                         <label class="form-check-label text-uppercase" for="{{ $material->nama_bahan }}">
                                                                 {{ $material->nama_bahan }}
@@ -46,8 +90,22 @@
                                         </div>
                                 @endforeach
                         </div>
+                </div> --}}
+                <div class="mb-3">
+                        <div>
+                                <label for="harga" class="form-label">HARGA</label>
+                                <select class="form-select @error('harga') is-invalid @enderror" id="harga" name="harga">
+                                        <option selected>Open this select menu</option>
+                                        <option value="100000" class="text-uppercase">Rp. 0 - Rp. 100.000</option>
+                                        <option value="200000" class="text-uppercase">Rp. 101.000 - Rp. 200.000</option>
+                                        <option value="300000" class="text-uppercase">Rp. 301.000 - Rp. 400.000</option>
+                                        <option value="500000" class="text-uppercase">Rp. 401.000 - Rp. 500.000</option>
+                                        <option value="700000" class="text-uppercase">Rp. 501.000 - Rp. 707.000</option>
+                                </select>
+                                <span class="invalid-feedback">@error('harga'){{$message}}@enderror</span>
+                        </div>
                 </div>
-                <div class="mt-5">
+                {{-- <div class="mt-5">
                         <p class="fw-bold text-uppercase">Harga</p>
                         <div class="row">
                                 <div class="col-lg-4">
@@ -105,8 +163,8 @@
                                         </label>
                                 </div>
                         </div>
-                </div>
-                <div class="mt-5">
+                </div> --}}
+                {{-- <div class="mt-5">
                         <p class="fw-bold text-uppercase">Jarak</p>
                         <div class="row">
                                 <div class="col-lg-4">
@@ -128,7 +186,29 @@
                                         </label>
                                 </div>
                         </div>
-                </div>
+                </div> --}}
                 <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>
 @endsection
+
+@push('scripts')
+        {{-- <script>
+                document.getElementById('layanan').addEventListener('change', function() {
+                        let selectedValue = this.value;
+                        
+                        if(selectedValue !== '') {
+                                // Make an AJAX request to fetch the filtered data
+                                let xhr = new XMLHttpRequest();
+                                xhr.open('GET', `/recommendation?selectedValue=${selectedValue}`, true);
+                                xhr.onload = function() {
+                                        if(xhr.status === 200) {
+                                                document.getElementById('filtered-data').innerHTML = xhr.responseText;
+                                        }
+                                };
+                                xhr.send();
+                        } else {
+                                document.getElementById('filtered-data').innerHTML = '';
+                        }
+                });
+        </script> --}}
+@endpush
