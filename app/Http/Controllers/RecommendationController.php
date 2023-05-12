@@ -2,32 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DaftarService;
-use App\Models\Material;
 use App\Models\Service;
-use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Stevebauman\Location\Facades\Location;
 
 class RecommendationController extends Controller
 {
-    public function index(Request $request)
+    public function indexFilter(Request $request)
     {
-        // $selectedValue = $request->input('selectedValue');
-        
-        // $filteredData = DB::table('tbl_daftar_service')
-        //     ->join('tbl_nama_bahan', 'tbl_daftar_service.id_bahan', '=', 'tbl_nama_bahan.id')
-        //     ->join('tbl_nama_service', 'tbl_daftar_service.id_service', '=', 'tbl_nama_service.id')
-        //     ->join('tbl_ukuran', 'tbl_daftar_service.id_ukuran', '=', 'tbl_ukuran.id')
-        //     ->where('id_service', $selectedValue)
-        //     ->get();
-    
+        $selectedValue = $request->input('selectedValue');
+
+        $filteredDataBahan = DB::table('tbl_filter_bahan')
+            ->join('tbl_nama_bahan', 'tbl_filter_bahan.id_bahan', '=', 'tbl_nama_bahan.id')
+            ->where('id_service', $selectedValue)
+            ->get();
+
+        $filteredDataUkuran = DB::table('tbl_filter_ukuran')
+            ->join('tbl_ukuran', 'tbl_filter_ukuran.id_ukuran', '=', 'tbl_ukuran.id')
+            ->where('id_service', $selectedValue)
+            ->get();
+
+        $tablesFilter = array('arrayBahan' => $filteredDataBahan, 'arrayUkuran' => $filteredDataUkuran);
+        return response()->json($tablesFilter);
+        // return response()->json($filteredDataBahan);
+    }
+    public function index()
+    {
         return view('user.recommendation', [
-            // 'hasil' => $filteredData,
             'services' => Service::all(),
-            'materials' => Material::all(),
-            'sizes' => Size::all()
         ]);
     }
     
@@ -57,7 +60,7 @@ class RecommendationController extends Controller
             ->where('tbl_ukuran.id', '=', $id_ukuran)
             ->where('harga', '<=', intval($harga))
             ->get();
-
+        
         if(count($places) != 0){
             //get distance
             $latFrom  = deg2rad($position->latitude);
@@ -83,8 +86,9 @@ class RecommendationController extends Controller
             $kriteria_bahan = 3;
             $kriteria_jarak = 3;
             $kriteria_harga = 5;
-            $kriteria_ukuran = 3;
             $kriteria_respon = 4;
+            $kriteria_ukuran = 3;
+            
             $criterias = [$kriteria_jenis_layanan, $kriteria_bahan, $kriteria_harga, $kriteria_ukuran, $kriteria_respon];
 
             //menambahkan setiap bobot kriteria
