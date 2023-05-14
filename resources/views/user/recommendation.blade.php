@@ -21,13 +21,6 @@
                                 <label for="bahan" class="form-label">JENIS BAHAN</label>
                                 <select class="form-select filtered @error('id_bahan') is-invalid @enderror" id="my-select-bahan" name="id_bahan" required>
                                         <option selected value="">Please select jenis layanan first!</option>
-                                        {{-- @if(count($filterBahan) == 0)
-                                                @foreach($filterBahan as $data)
-                                                        <option value="{{ $data->id_bahan }}">{{ $data->nama_bahan }}</option>
-                                                @endforeach
-                                        @else
-                                                <option value="">Please select jenis layanan first!</option>
-                                        @endif --}}
                                 </select>
                                 <span class="invalid-feedback">@error('id_bahan'){{$message}}@enderror</span>
                         </div>
@@ -35,15 +28,8 @@
                 <div class="mb-3">
                         <div id="filtered-data"> 
                                 <label for="ukuran" class="form-label">JENIS UKURAN</label>
-                                <select class="form-select filtered @error('id_ukuran') is-invalid @enderror" id="my-select-ukuran" name="id_ukuran">
+                                <select class="form-select filtered @error('id_ukuran') is-invalid @enderror" id="my-select-ukuran" name="id_ukuran" required>
                                         <option selected value="">Please select jenis layanan first!</option>
-                                        {{-- @if(count($filterUkuran) > 0)
-                                                @foreach($filterUkuran as $data)
-                                                        <option value="{{ $data->id_ukuran }}">{{ $data->jenis_ukuran }}</option>
-                                                @endforeach
-                                        @else
-                                                <option value="">Please select jenis layanan first!</option>
-                                        @endif --}}
                                 </select>
                                 <span class="invalid-feedback">@error('id_ukuran'){{$message}}@enderror</span>
                         </div>
@@ -51,14 +37,9 @@
 
                 <div class="mb-3">
                         <div>
-                                <label for="harga" class="form-label">HARGA</label>
-                                <select class="form-select @error('harga') is-invalid @enderror" id="harga" name="harga" required>
-                                        <option selected value="">Open this select menu</option>
-                                        <option value="100000" class="text-uppercase">Rp. 0 - Rp. 100.000</option>
-                                        <option value="200000" class="text-uppercase">Rp. 101.000 - Rp. 200.000</option>
-                                        <option value="300000" class="text-uppercase">Rp. 301.000 - Rp. 400.000</option>
-                                        <option value="500000" class="text-uppercase">Rp. 401.000 - Rp. 500.000</option>
-                                        <option value="700000" class="text-uppercase">Rp. 501.000 - Rp. 707.000</option>
+                                <label for="my-select-harga" class="form-label">HARGA</label>
+                                <select class="form-select @error('harga') is-invalid @enderror" id="my-select-harga"  name="harga" required>
+                                        <option selected value="">Please select jenis layanan first!</option>
                                 </select>
                                 <span class="invalid-feedback">@error('harga'){{$message}}@enderror</span>
                         </div>
@@ -92,6 +73,11 @@
                                                         const selectUkuran = document.getElementById('my-select-ukuran');
                                                         selectUkuran.innerHTML = '';
                                                         selectUkuran.appendChild(createOptionsUkuran(filteredResult['arrayUkuran']));
+
+                                                        //filter harga
+                                                        const selectHarga = document.getElementById('my-select-harga');
+                                                        selectHarga.innerHTML = '';
+                                                        selectHarga.appendChild(createOptionsHarga(filteredResult['arrayHarga']));
                                                 }
                                         }
                                         
@@ -116,6 +102,19 @@
                                                 const option = document.createElement('option');
                                                 option.value = item.id_ukuran;
                                                 option.textContent = item.jenis_ukuran;
+                                                options.appendChild(option);
+                                        });
+
+                                        return options;
+                                }
+
+                                function createOptionsHarga(data) {
+                                        const options = document.createDocumentFragment();
+
+                                        data.forEach(function(item) {
+                                                const option = document.createElement('option');
+                                                option.value = item.harga;
+                                                option.textContent = ' Rp.0 - ' + 'Rp.' + item.harga;
                                                 options.appendChild(option);
                                         });
 

@@ -37,12 +37,17 @@ class PrintingController extends Controller
 
     public function showAdmin(Printing $printing)
     {
+        $daftar_service = DB::table('tbl_daftar_service')
+            ->join('tbl_nama_bahan', 'tbl_daftar_service.id_bahan', '=', 'tbl_nama_bahan.id')
+            ->join('tbl_nama_service', 'tbl_daftar_service.id_service', '=', 'tbl_nama_service.id')
+            ->join('tbl_ukuran', 'tbl_daftar_service.id_ukuran', '=', 'tbl_ukuran.id')
+            ->join('tbl_tempat_printing', 'tbl_daftar_service.id_tempat_printing', '=', 'tbl_tempat_printing.id')
+            ->where('tbl_tempat_printing.id', '=', $printing->id)
+            ->get();
+        
         return view('admin.detail', [
             'printing' => $printing,
-            'daftarServices' => $printing,
-            'services' => $printing,
-            'materials' => $printing,
-            'sizes' => $printing,
+            'daftarServices' => $daftar_service,
         ]);
     }
 
@@ -67,6 +72,11 @@ class PrintingController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'picture' => 'required',
+            'bobot_jenis_layanan' => 'required',
+            'bobot_bahan' => 'required',
+            'bobot_harga' => 'required',
+            'bobot_respon' => 'required',
+            'bobot_ukuran' => 'required',
         ]);
 
         $printing = new Printing();
@@ -79,10 +89,15 @@ class PrintingController extends Controller
         $filename = $request->file('picture')->getClientOriginalName();
         $printing->picture = $filename;
         $request->file('picture')->move(public_path('images'),$filename);
+        $printing->bobot_jenis_layanan = $request->input('bobot_jenis_layanan');
+        $printing->bobot_bahan = $request->input('bobot_bahan');
+        $printing->bobot_harga = $request->input('bobot_harga');
+        $printing->bobot_respon = $request->input('bobot_respon');
+        $printing->bobot_ukuran = $request->input('bobot_ukuran');
 
         $printing->save();
         
-        return redirect('/admin/home')->with('success', "Items added into database!");
+        return redirect('/admin/home')->with('success', "Printing added into database!");
     }
 
     public function updateDetail(Request $request, $id)
@@ -94,6 +109,11 @@ class PrintingController extends Controller
             'no_hp' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
+            'bobot_jenis_layanan' => 'required',
+            'bobot_bahan' => 'required',
+            'bobot_harga' => 'required',
+            'bobot_respon' => 'required',
+            'bobot_ukuran' => 'required',
         ]);
 
         $printing->nama = $request->input('nama');
@@ -101,6 +121,11 @@ class PrintingController extends Controller
         $printing->no_hp = $request->input('no_hp');
         $printing->latitude = $request->input('latitude');
         $printing->longitude = $request->input('longitude');
+        $printing->bobot_jenis_layanan = $request->input('bobot_jenis_layanan');
+        $printing->bobot_bahan = $request->input('bobot_bahan');
+        $printing->bobot_harga = $request->input('bobot_harga');
+        $printing->bobot_respon = $request->input('bobot_respon');
+        $printing->bobot_ukuran = $request->input('bobot_ukuran');
         if($request->file('picture')){
             $filename = $request->file('picture')->getClientOriginalName();
             if(File::exists(public_path('images/'.$printing['picture']))){
@@ -144,11 +169,6 @@ class PrintingController extends Controller
             'id_bahan' => 'required',
             'id_ukuran' => 'required',
             'harga' => 'required',
-            'bobot_jenis_layanan' => 'required',
-            'bobot_bahan' => 'required',
-            'bobot_harga' => 'required',
-            'bobot_respon' => 'required',
-            'bobot_ukuran' => 'required',
         ]);
 
         DaftarService::create($validated);
@@ -161,11 +181,6 @@ class PrintingController extends Controller
         $daftarService = DaftarService::find($id);
         $request->validate([
             'harga' => 'required',
-            'bobot_jenis_layanan' => 'required',
-            'bobot_bahan' => 'required',
-            'bobot_harga' => 'required',
-            'bobot_respon' => 'required',
-            'bobot_ukuran' => 'required',
         ]);
 
         if($request->input('id_tempat_printing')){
@@ -176,11 +191,6 @@ class PrintingController extends Controller
         $daftarService->id_service = $request->input('id_service');
         $daftarService->id_ukuran = $request->input('id_ukuran');
         $daftarService->harga = $request->input('harga');
-        $daftarService->bobot_jenis_layanan = $request->input('bobot_jenis_layanan');
-        $daftarService->bobot_bahan = $request->input('bobot_bahan');
-        $daftarService->bobot_harga = $request->input('bobot_harga');
-        $daftarService->bobot_respon = $request->input('bobot_respon');
-        $daftarService->bobot_ukuran = $request->input('bobot_ukuran');
 
         $daftarService->save();
 

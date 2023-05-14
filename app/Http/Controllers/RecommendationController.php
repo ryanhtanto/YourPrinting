@@ -23,9 +23,12 @@ class RecommendationController extends Controller
             ->where('id_service', $selectedValue)
             ->get();
 
-        $tablesFilter = array('arrayBahan' => $filteredDataBahan, 'arrayUkuran' => $filteredDataUkuran);
+        $filteredDataHarga = DB::table('tbl_filter_harga')
+            ->where('id_service', $selectedValue)
+            ->get();
+
+        $tablesFilter = array('arrayBahan' => $filteredDataBahan, 'arrayUkuran' => $filteredDataUkuran, 'arrayHarga' => $filteredDataHarga);
         return response()->json($tablesFilter);
-        // return response()->json($filteredDataBahan);
     }
     public function index()
     {
@@ -101,9 +104,8 @@ class RecommendationController extends Controller
 
             //menghitung nilai preferensi alternatif(S)
             $preferensi_alternatif = [];
-
             foreach($places as $place){
-                $preferensi = pow($place->bobot_jenis_layanan, $bobot_preferensi[0]) * pow($place->bobot_bahan, $bobot_preferensi[1]) * pow($place->bobot_harga, $bobot_preferensi[2]) * pow($place->bobot_ukuran , $bobot_preferensi[3]) * pow($place->bobot_respon , $bobot_preferensi[4]);
+                $preferensi = pow($place->bobot_jenis_layanan, $bobot_preferensi[0]) * pow($place->bobot_bahan, $bobot_preferensi[1]) * pow($place->bobot_harga, ( -1 * $bobot_preferensi[2])) * pow($place->bobot_ukuran , $bobot_preferensi[3]) * pow($place->bobot_respon , $bobot_preferensi[4]);
                 array_push($preferensi_alternatif, $preferensi);
             }
            
@@ -130,7 +132,9 @@ class RecommendationController extends Controller
                 'places' => $sortedPlaces,
             ]);
         }else{
-            echo 'tidak ada data';
+            return view('user.hasil-rekomendasi', [
+                'places' => [],
+            ]);
         }
     }
 }
