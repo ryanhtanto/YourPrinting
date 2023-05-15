@@ -5,7 +5,7 @@
                 <div class="row justify-content-center mt-5">
                         <h3 class="text-center fw-bold">TENTANG SISTEM</h3>
                         <div class="col-lg-6 text-center mt-5">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam semper ex eros, in mattis enim pulvinar in. Nulla facilisi. Nullam a faucibus tellus, ac finibus tortor. Nullam at mi laoreet, aliquam erat a, fringilla dui. Ut in ante sed orci consequat tincidunt. Maecenas ornare consequat mauris hendrerit ornare. Vivamus posuere rutrum dui, mattis tincidunt orci cursus eget. Aenean non auctor tortor. Vestibulum rutrum eros vel elit varius, vel egestas diam ornare. Vestibulum sit amet risus nisi.</p>
+                                <p>Sistem ini dibuat berdasarkan hasil survey yang dilakukan kepada 33 mahasiswa Desain Komunikasi Visual (DKV) Universitas Multimedia Nusantara yang mempunyai masalah pada pencarian tempat printing. Mahasiswa cenderung hanya mengetahui tempat printing yang biasanya didatangi, namun mendapatkan hasil yang kurang maksimal. Sehingga sistem ini diharapkan mampu untuk membantu tidak hanya mahasiswa, namun dari kalangan umum yang mempunyai kendala serupa.</p>
                         </div>
                 </div>
         </article>

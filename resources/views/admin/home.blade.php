@@ -11,10 +11,10 @@
     @foreach ($printings as $printing)
       <div class="card mb-3 border">
         <div class="row g-0">
-          <div class="col-md-4">
-            <img src="https://source.unsplash.com/500x300?technology" class="img-fluid rounded-start" alt="banner-printing">
+          <div class="col-md-3">
+            <img src="{{ asset('images/'. $printing->picture)}}" class="img-fluid rounded-start" alt="banner-printing" style="width: 250px;">
           </div>
-          <div class="col-md-8">
+          <div class="col-md-9">
             <div class="card-body">
               <h5 class="card-title text-uppercase fw-bold">{{ $printing->nama }}</h5>
               <p class="card-text">{{ $printing->alamat }}</p>

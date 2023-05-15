@@ -3,7 +3,7 @@
 @section('container')
         @if (count($places) > 0)
                 <section>
-                        <h3 class="fw-bold text-center">HASIL REKOMENDASI TEMPAT PRINTING</h3>
+                        <h3 class="fw-bold text-center mt-5">HASIL REKOMENDASI TEMPAT PRINTING</h3>
                         <p class="text-center">Berdasarkan kriteria yang sudah anda masukkan, maka <br> hasil rekomendasi tempat printing terbaik akan dijabarkan dibawah ini</p>
                         <div class="row">
                                 <div class="">

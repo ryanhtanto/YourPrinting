@@ -28,7 +28,7 @@
                                 <i class="fas fa-bars"></i>
                         </button>
                         <a class="navbar-brand fw-bold" href="#">
-                                TEMPAT PRINTING
+                                Your Printing
                         </a>
                         <ul class="navbar-nav ms-auto d-flex flex-row">
                                 @auth

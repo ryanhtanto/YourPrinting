@@ -18,8 +18,8 @@
                                         </div>
                                 </div>
                         </div>
-                        <div class="col-lg-6 col-md-12 sol-sm-12">
-                                <img src="https://source.unsplash.com/500x300?technology" class="card-img-top" alt="banner">
+                        <div class="col-lg-6 col-md-12 sol-sm-12 d-flex justify-content-center align-items-center">
+                                <img src="{{ asset('images/'. $printing->picture)}}" style="width: 50%" class="card-img-top" alt="banner">
                         </div>
                 </div>
         </section>

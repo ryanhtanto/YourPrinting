@@ -1,7 +1,7 @@
 @extends('main/main')
 
 @section('container')
-        <h3 class="fw-bold">REKOMENDASI TEMPAT PRINTING</h3>
+        <h3 class="fw-bold mt-5">REKOMENDASI TEMPAT PRINTING</h3>
         <form method="POST" action="/recommendation">
                 @csrf
                 <div class="mb-3">

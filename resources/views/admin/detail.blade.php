@@ -29,7 +29,7 @@
                                 <p class="m-0">Ukuran: {{ $printing->bobot_ukuran }}</p>   
                         </div>
                         <div class="col-lg-6">
-                                <img src="https://source.unsplash.com/500x300?technology" class="card-img-top" alt="banner"> 
+                                <img src="{{ asset('images/'. $printing->picture)}}" class="card-img-top d-flex justify-content-center align-items-center" alt="banner" style="width: 50%"> 
                         </div>
                 </div>
         </section>

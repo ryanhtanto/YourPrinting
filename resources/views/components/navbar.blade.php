@@ -1,19 +1,19 @@
-<nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-                <a class="navbar-brand fw-bold" href="../">TEMPAT PRINTING</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid container">
+                <a class="navbar-brand fw-bold" href="../">Your Printing</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
                                 <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="../">Home</a>
+                                        <a class="nav-link fw-bold" aria-current="page" href="../">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                        <a class="nav-link" href="../about">About</a>
+                                        <a class="nav-link fw-bold" href="../about">About</a>
                                 </li>
                                 <li class="nav-item">
-                                        <a class="nav-link" href="../recommendation">Recommendation</a>
+                                        <a class="nav-link fw-bold" href="../recommendation">Recommendation</a>
                                 </li>
                         </ul>
                 </div>
