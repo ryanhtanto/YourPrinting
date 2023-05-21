@@ -74,7 +74,6 @@ class PrintingController extends Controller
             'picture' => 'required',
             'bobot_jenis_layanan' => 'required',
             'bobot_bahan' => 'required',
-            'bobot_harga' => 'required',
             'bobot_respon' => 'required',
             'bobot_ukuran' => 'required',
         ]);
@@ -91,7 +90,6 @@ class PrintingController extends Controller
         $request->file('picture')->move(public_path('images'),$filename);
         $printing->bobot_jenis_layanan = $request->input('bobot_jenis_layanan');
         $printing->bobot_bahan = $request->input('bobot_bahan');
-        $printing->bobot_harga = $request->input('bobot_harga');
         $printing->bobot_respon = $request->input('bobot_respon');
         $printing->bobot_ukuran = $request->input('bobot_ukuran');
 
@@ -111,7 +109,6 @@ class PrintingController extends Controller
             'longitude' => 'required',
             'bobot_jenis_layanan' => 'required',
             'bobot_bahan' => 'required',
-            'bobot_harga' => 'required',
             'bobot_respon' => 'required',
             'bobot_ukuran' => 'required',
         ]);
@@ -123,7 +120,6 @@ class PrintingController extends Controller
         $printing->longitude = $request->input('longitude');
         $printing->bobot_jenis_layanan = $request->input('bobot_jenis_layanan');
         $printing->bobot_bahan = $request->input('bobot_bahan');
-        $printing->bobot_harga = $request->input('bobot_harga');
         $printing->bobot_respon = $request->input('bobot_respon');
         $printing->bobot_ukuran = $request->input('bobot_ukuran');
         if($request->file('picture')){

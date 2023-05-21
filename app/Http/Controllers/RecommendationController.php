@@ -65,21 +65,39 @@ class RecommendationController extends Controller
             ->get();
         
         if(count($places) != 0){
-            //get distance
-            $latFrom  = deg2rad($position->latitude);
-            $lonFrom  = deg2rad($position->longitude);
-            $earthRadius = 6371;
-            foreach($places as $place){
-                $latTo  = deg2rad($place->latitude);
-                $lonTo  = deg2rad($place->longitude);
-                
-                $latDelta = $latTo - $latFrom;
-                $lonDelta = $lonTo - $lonFrom;
-                
-                $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) + cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
-                $distance = $earthRadius * $angle;
-                $place->distance = $distance;
+            //array bobot harga
+            $bobot_harga_array = [];
+
+            //pengecekan jumlah tempat yang direkomendasi
+            if(count($places) == 1){
+                $bobot_harga = 1;
+                array_push($bobot_harga_array, $bobot_harga);
+            }else{
+                //menentukan bobot harga
+                $maxValue = null;
+                $minValue = null;
+                foreach($places as $place){
+                    if ($maxValue === null || $place->harga > $maxValue) {
+                        $maxValue = $place->harga;
+                    }
+                    if ($minValue === null || $place->harga < $minValue) {
+                        $minValue = $place->harga;
+                    }
+                }
+                $rentang = ($maxValue - $minValue) / 5;
+                foreach($places as $place){
+                    $normalisasi = ($place->harga - $minValue) / $rentang;
+                    array_push($bobot_harga_array, $normalisasi);
+                }
             }
+
+            foreach ($bobot_harga_array as $key => $value) {
+                if ($value < 1) {
+                    $bobot_harga_array[$key] = $bobot_harga_array[$key] + 1;
+                }
+            }
+
+            // dd($bobot_harga_array);
 
             //array penampung nilai bobot (Wj)
             $bobot_preferensi = [];
@@ -87,12 +105,11 @@ class RecommendationController extends Controller
             //nilai bobot kriteria
             $kriteria_jenis_layanan = 3;
             $kriteria_bahan = 3;
-            $kriteria_jarak = 3;
             $kriteria_harga = 5;
             $kriteria_respon = 4;
             $kriteria_ukuran = 3;
             
-            $criterias = [$kriteria_jenis_layanan, $kriteria_bahan, $kriteria_harga, $kriteria_ukuran, $kriteria_respon];
+            $criterias = [$kriteria_jenis_layanan, $kriteria_bahan, $kriteria_harga, $kriteria_respon, $kriteria_ukuran ];
 
             //menambahkan setiap bobot kriteria
             $sumCriteria = array_sum($criterias);
@@ -101,17 +118,19 @@ class RecommendationController extends Controller
             foreach($criterias as $criteria){
                 array_push($bobot_preferensi, $criteria/$sumCriteria);
             }
-
+            
             //menghitung nilai preferensi alternatif(S)
             $preferensi_alternatif = [];
+            $count1 = 0;
             foreach($places as $place){
-                $preferensi = pow($place->bobot_jenis_layanan, $bobot_preferensi[0]) * pow($place->bobot_bahan, $bobot_preferensi[1]) * pow($place->bobot_harga, ( -1 * $bobot_preferensi[2])) * pow($place->bobot_ukuran , $bobot_preferensi[3]) * pow($place->bobot_respon , $bobot_preferensi[4]);
+                $preferensi = pow($place->bobot_jenis_layanan, $bobot_preferensi[0]) * pow($place->bobot_bahan, $bobot_preferensi[1]) * pow($bobot_harga_array[$count1], ( -1 * $bobot_preferensi[2])) * pow($place->bobot_respon , $bobot_preferensi[3]) * pow($place->bobot_ukuran , $bobot_preferensi[4]) ;
                 array_push($preferensi_alternatif, $preferensi);
+                $count1++;
             }
            
             //Jumlah nilai normalisasi preferensi alternatif
             $sumPreferensi = array_sum($preferensi_alternatif);
-            
+            // dd($preferensi_alternatif);
             //menghitung nilai vektor (V)
             $hasil_vektor = [];
             foreach($preferensi_alternatif as $vektor){

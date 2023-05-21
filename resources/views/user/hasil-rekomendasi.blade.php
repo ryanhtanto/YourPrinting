@@ -5,47 +5,30 @@
                 <section>
                         <h3 class="fw-bold text-center mt-5">HASIL REKOMENDASI TEMPAT PRINTING</h3>
                         <p class="text-center">Berdasarkan kriteria yang sudah anda masukkan, maka <br> hasil rekomendasi tempat printing terbaik akan dijabarkan dibawah ini</p>
-                        <div class="row">
-                                <div class="">
-                                        <table class="table">
-                                                <thead>
-                                                        <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">Nama Tempat </th>
-                                                                {{-- <th scope="col">Alamat</th>
-                                                                <th scope="col">No Hp</th> --}}
-                                                                <th scope="col">Jenis Layanan</th>
-                                                                <th scope="col">Jenis Bahan</th>
-                                                                <th scope="col">Ukuran</th>
-                                                                <th scope="col">Harga</th>
-                                                                {{-- <th scope="col">Jarak</th> --}}
-                                                                {{-- <th scope="col">Link Maps</th> --}}
-                                                                <th scope="col">Hasil Vektor</th>
-                                                        </tr>
-                                                </thead>
-                                                <tbody>
-                                                        @foreach($places as $place)
-                                                                <tr>
-                                                                        <th scope="row">{{ $loop->iteration }}</th>
-                                                                        <td>{{ $place->nama}}</td>
-                                                                        {{-- <td>{{ $place->alamat}}</td>
-                                                                        <td>{{ $place->no_hp}}</td> --}}
-                                                                        <td>{{ $place->nama_service}}</td>
-                                                                        <td>{{ $place->nama_bahan}}</td>
-                                                                        <td>{{ $place->jenis_ukuran}}</td>
-                                                                        <td>Rp. {{ number_format($place->harga) }}</td>
-                                                                        {{-- <td>{{ round($place->distance,2)}} KM</td> --}}
-                                                                        {{-- <td>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query={{ $place->latitude}},{{ $place->longitude}}">Link Maps</a>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query={{ $place->nama }}">Link Maps</a>
-                                                                        </td> --}}
-                                                                        <td>{{ round($place->weightedValue, 2)}}</td>
-                                                                </tr>
-                                                        @endforeach
-                                                </tbody>
-                                        </table>
-                                </div>
+                        <div class="row container mt-5">
+                                @foreach ($places as $place)
+                                        <div class="col-lg-4 mb-5">
+                                                <div class="card">
+                                                        {{-- <img src="{{ asset('images/'. $place->picture)}}" class="card-img-top" alt="place-list_img"> --}}
+                                                        <div class="card-body">
+                                                                <h5 class="card-title">{{ $place->nama }}</h5>
+                                                                <p class="card-text m-0">Jenis Layanan: {{ $place->nama_service }}</p>
+                                                                <p class="card-text m-0">Harga: Rp. {{ number_format($place->harga) }}</p>
+                                                                <p class="card-text m-0"><i class="fa-brands fa-whatsapp"></i> {{ $place->no_hp }}</p>
+                                                                <div class="d-flex">
+                                                                        <a href="https://www.google.com/maps/search/?api=1&query={{ $place->nama }}">
+                                                                                <img src="{{ asset('maps.png')}}" class="card-img-top" alt="maps-icon" style="width: 20px">
+                                                                        </a>
+                                                                        <p class="m-0 ">{{ $place->alamat }}</p>
+                                                                </div>
+                                                                <p style="font-size: 10px" class="m-0">*Click the maps logo to direct you to google maps</p>
+                                                                <a href="../detail/{{{ $place->id }}}" class="text-decoration-none fw-bold text-dark">Detail..</a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                @endforeach
                         </div>
+                        
                 </section>
         @else
             <section>
