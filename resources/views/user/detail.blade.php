@@ -12,9 +12,12 @@
                                                         <p class="mb-0 mx-2">{{$printing->no_hp}}</p>
                                                 </div>
                                                 <div class="d-flex">
-                                                        <i class="fa-solid fa-location-dot mt-2"></i>
-                                                        <p class="mt-0 mx-2">{{$printing->alamat}}</p>
+                                                        <a href="https://www.google.com/maps/search/?api=1&query={{ $printing->nama }}">
+                                                                <img src="{{ asset('maps.png')}}" class="card-img-top" alt="maps-icon" style="width: 20px">
+                                                        </a>
+                                                        <p class="m-0 ">{{ $printing->alamat }}</p>
                                                 </div>
+                                                <p style="font-size: 10px" class="m-0">*Click the maps logo to direct you to google maps</p>
                                         </div>
                                 </div>
                         </div>
@@ -26,9 +29,9 @@
         <section>
                 <div class="row mt-5">
                         <h3 class="fw-bold">LAYANAN YANG TERSEDIA</h3>
-                        @foreach ($services->service as $name) 
-                                <div class="col-lg-4 col-md-4 col-sm-6">
-                                        <p class="text-center fs-5">{{$name->nama_service}} </p>
+                        @foreach ($services as $service) 
+                                <div class="col-lg-4 col-md-4 col-sm-6 mt-3">
+                                        <p class="text-center fs-5 p-1 fw-bold" style="background-color: #43d9cf; border-radius: 20px; ">{{$service->nama_service}} </p>
                                 </div>
                         @endforeach
                 </div>

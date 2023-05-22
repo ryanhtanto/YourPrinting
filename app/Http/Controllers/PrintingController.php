@@ -29,9 +29,17 @@ class PrintingController extends Controller
 
     public function show(Printing $printing)
     {
+        $daftarService = DB::table('tbl_daftar_service')
+            ->join('tbl_tempat_printing', 'tbl_daftar_service.id_tempat_printing', '=', 'tbl_tempat_printing.id')
+            ->join('tbl_nama_service', 'tbl_daftar_service.id_service', '=', 'tbl_nama_service.id')
+            ->select('tbl_daftar_service.id_service', 'tbl_nama_service.nama_service')
+            ->where('id_tempat_printing', $printing->id)
+            ->groupBy('tbl_daftar_service.id_service', 'tbl_nama_service.nama_service')
+            ->get();
+
         return view('user.detail', [
             'printing' => $printing,
-            'services' => $printing,
+            'services' => $daftarService,
         ]);
     }
 

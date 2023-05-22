@@ -63,7 +63,7 @@
                                         if (xhr.readyState === XMLHttpRequest.DONE){
                                                 if(xhr.status === 200) {
                                                         const filteredResult = JSON.parse(xhr.responseText);
-
+                                                        
                                                         //filter bahan
                                                         const selectBahan = document.getElementById('my-select-bahan');
                                                         selectBahan.innerHTML = '';
@@ -110,13 +110,11 @@
 
                                 function createOptionsHarga(data) {
                                         const options = document.createDocumentFragment();
-
-                                        data.forEach(function(item) {
-                                                const option = document.createElement('option');
-                                                option.value = item.harga;
-                                                option.textContent = ' Rp.0 - ' + 'Rp.' + item.harga;
-                                                options.appendChild(option);
-                                        });
+                                        const formattedAmount = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(data);
+                                        const option = document.createElement('option');
+                                        option.value = data;
+                                        option.textContent = ' Rp.1.000 - ' + formattedAmount;
+                                        options.appendChild(option);
 
                                         return options;
                                 }

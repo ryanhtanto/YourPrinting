@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Stevebauman\Location\Facades\Location;
 
 class RecommendationController extends Controller
 {
@@ -13,19 +12,23 @@ class RecommendationController extends Controller
     {
         $selectedValue = $request->input('selectedValue');
 
-        $filteredDataBahan = DB::table('tbl_filter_bahan')
-            ->join('tbl_nama_bahan', 'tbl_filter_bahan.id_bahan', '=', 'tbl_nama_bahan.id')
+        $filteredDataBahan = DB::table('tbl_daftar_service')
+            ->join('tbl_nama_bahan', 'tbl_daftar_service.id_bahan', '=', 'tbl_nama_bahan.id')
+            ->select('tbl_daftar_service.id_bahan', 'tbl_nama_bahan.nama_bahan')
             ->where('id_service', $selectedValue)
+            ->groupBy('tbl_daftar_service.id_bahan', 'tbl_nama_bahan.nama_bahan')
             ->get();
 
-        $filteredDataUkuran = DB::table('tbl_filter_ukuran')
-            ->join('tbl_ukuran', 'tbl_filter_ukuran.id_ukuran', '=', 'tbl_ukuran.id')
+        $filteredDataUkuran = DB::table('tbl_daftar_service')
+            ->join('tbl_ukuran', 'tbl_daftar_service.id_ukuran', '=', 'tbl_ukuran.id')
+            ->select('tbl_daftar_service.id_ukuran', 'tbl_ukuran.jenis_ukuran')
             ->where('id_service', $selectedValue)
+            ->groupBy('tbl_daftar_service.id_ukuran', 'tbl_ukuran.jenis_ukuran')
             ->get();
 
-        $filteredDataHarga = DB::table('tbl_filter_harga')
+        $filteredDataHarga = DB::table('tbl_daftar_service')
             ->where('id_service', $selectedValue)
-            ->get();
+            ->max('harga');
 
         $tablesFilter = array('arrayBahan' => $filteredDataBahan, 'arrayUkuran' => $filteredDataUkuran, 'arrayHarga' => $filteredDataHarga);
         return response()->json($tablesFilter);
@@ -46,8 +49,6 @@ class RecommendationController extends Controller
             'harga' => 'required',
         ]);
         
-        //get Location
-        $position = Location::get('ipAddress');
         $id_service = $request->input('id_service');
         $id_bahan = $request->input('id_bahan');
         $id_ukuran = $request->input('id_ukuran');
