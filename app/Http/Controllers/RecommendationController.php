@@ -26,11 +26,12 @@ class RecommendationController extends Controller
             ->groupBy('tbl_daftar_service.id_ukuran', 'tbl_ukuran.jenis_ukuran')
             ->get();
 
-        $filteredDataHarga = DB::table('tbl_daftar_service')
-            ->where('id_service', $selectedValue)
-            ->max('harga');
+        // $filteredDataHarga = DB::table('tbl_daftar_service')
+        //     ->where('id_service', $selectedValue)
+        //     ->max('harga');
 
-        $tablesFilter = array('arrayBahan' => $filteredDataBahan, 'arrayUkuran' => $filteredDataUkuran, 'arrayHarga' => $filteredDataHarga);
+        // $tablesFilter = array('arrayBahan' => $filteredDataBahan, 'arrayUkuran' => $filteredDataUkuran, 'arrayHarga' => $filteredDataHarga);
+        $tablesFilter = array('arrayBahan' => $filteredDataBahan, 'arrayUkuran' => $filteredDataUkuran);
         return response()->json($tablesFilter);
     }
     public function index()
@@ -85,20 +86,18 @@ class RecommendationController extends Controller
                         $minValue = $place->harga;
                     }
                 }
-                $rentang = ($maxValue - $minValue) / 5;
+                $rentang = ($maxValue - $minValue);
                 foreach($places as $place){
                     $normalisasi = ($place->harga - $minValue) / $rentang;
                     array_push($bobot_harga_array, $normalisasi);
                 }
             }
-
+            
             foreach ($bobot_harga_array as $key => $value) {
-                if ($value < 1) {
+                if ($value < 5) {
                     $bobot_harga_array[$key] = $bobot_harga_array[$key] + 1;
                 }
             }
-
-            // dd($bobot_harga_array);
 
             //array penampung nilai bobot (Wj)
             $bobot_preferensi = [];
@@ -131,7 +130,7 @@ class RecommendationController extends Controller
            
             //Jumlah nilai normalisasi preferensi alternatif
             $sumPreferensi = array_sum($preferensi_alternatif);
-            // dd($preferensi_alternatif);
+
             //menghitung nilai vektor (V)
             $hasil_vektor = [];
             foreach($preferensi_alternatif as $vektor){
@@ -147,7 +146,7 @@ class RecommendationController extends Controller
             }
 
             $sortedPlaces = collect($places)->sortByDesc('weightedValue');
-
+            
             return view('user.hasil-rekomendasi', [
                 'places' => $sortedPlaces,
             ]);

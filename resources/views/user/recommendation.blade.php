@@ -39,12 +39,16 @@
                         <div>
                                 <label for="my-select-harga" class="form-label">HARGA</label>
                                 <select class="form-select @error('harga') is-invalid @enderror" id="my-select-harga"  name="harga" required>
-                                        <option selected value="">Please select jenis layanan first!</option>
+                                        <option selected value="">Open this select menu</option>
+                                        <option value="140000">Rp. 100 - Rp. 140.000</option>
+                                        <option value="280000">Rp. 141.000 - Rp. 280.000</option>
+                                        <option value="420000">Rp. 281.000 - Rp. 420.000</option>
+                                        <option value="560000">Rp. 421.000 - Rp. 560.000</option>
+                                        <option value="700000">Rp. 561.000 - Rp. 700.000</option>
                                 </select>
                                 <span class="invalid-feedback">@error('harga'){{$message}}@enderror</span>
                         </div>
                 </div>
-
                 <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>
 @endsection
@@ -75,9 +79,9 @@
                                                         selectUkuran.appendChild(createOptionsUkuran(filteredResult['arrayUkuran']));
 
                                                         //filter harga
-                                                        const selectHarga = document.getElementById('my-select-harga');
-                                                        selectHarga.innerHTML = '';
-                                                        selectHarga.appendChild(createOptionsHarga(filteredResult['arrayHarga']));
+                                                        // const selectHarga = document.getElementById('my-select-harga');
+                                                        // selectHarga.innerHTML = '';
+                                                        // selectHarga.appendChild(createOptionsHarga(filteredResult['arrayHarga']));
                                                 }
                                         }
                                         
@@ -108,16 +112,16 @@
                                         return options;
                                 }
 
-                                function createOptionsHarga(data) {
-                                        const options = document.createDocumentFragment();
-                                        const formattedAmount = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(data);
-                                        const option = document.createElement('option');
-                                        option.value = data;
-                                        option.textContent = ' Rp.1.000 - ' + formattedAmount;
-                                        options.appendChild(option);
+                                // function createOptionsHarga(data) {
+                                //         const options = document.createDocumentFragment();
+                                //         const formattedAmount = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(data);
+                                //         const option = document.createElement('option');
+                                //         option.value = data;
+                                //         option.textContent = ' Rp.1.000 - ' + formattedAmount;
+                                //         options.appendChild(option);
 
-                                        return options;
-                                }
+                                //         return options;
+                                // }
                                 xhr.send();
                         } else {
                                 document.getElementById('filtered-data').innerHTML = '';

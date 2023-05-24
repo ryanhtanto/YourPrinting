@@ -14,6 +14,7 @@
                                                                 <h5 class="card-title">{{ $place->nama }}</h5>
                                                                 <p class="card-text m-0">Jenis Layanan: {{ $place->nama_service }}</p>
                                                                 <p class="card-text m-0">Harga: Rp. {{ number_format($place->harga) }}</p>
+                                                                <p class="card-text m-0">Bahan: {{$place->nama_bahan}}</p>
                                                                 <p class="card-text m-0"><i class="fa-brands fa-whatsapp"></i> {{ $place->no_hp }}</p>
                                                                 <div class="d-flex">
                                                                         <a href="https://www.google.com/maps/search/?api=1&query={{ $place->nama }}">
