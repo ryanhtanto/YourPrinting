@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BobotKriteria;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,11 +27,6 @@ class RecommendationController extends Controller
             ->groupBy('tbl_daftar_service.id_ukuran', 'tbl_ukuran.jenis_ukuran')
             ->get();
 
-        // $filteredDataHarga = DB::table('tbl_daftar_service')
-        //     ->where('id_service', $selectedValue)
-        //     ->max('harga');
-
-        // $tablesFilter = array('arrayBahan' => $filteredDataBahan, 'arrayUkuran' => $filteredDataUkuran, 'arrayHarga' => $filteredDataHarga);
         $tablesFilter = array('arrayBahan' => $filteredDataBahan, 'arrayUkuran' => $filteredDataUkuran);
         return response()->json($tablesFilter);
     }
@@ -92,42 +88,49 @@ class RecommendationController extends Controller
                     array_push($bobot_harga_array, $normalisasi);
                 }
             }
-            
             foreach ($bobot_harga_array as $key => $value) {
                 if ($value < 5) {
                     $bobot_harga_array[$key] = $bobot_harga_array[$key] + 1;
                 }
             }
+            
+            //nilai bobot kriteria
+            $bobots = BobotKriteria::all();
+
+            foreach($bobots as $bobot){
+                $bobotKriteria = array_values($bobot->toArray());
+                unset($bobotKriteria[0]);
+                $criterias[] = $bobotKriteria;
+            }
+
+            //menambahkan setiap bobot kriteria
+            $sumCriteria = [];
+            foreach ($criterias as $criteria) {
+                $sumCriteria[] = array_sum($criteria);
+            }
 
             //array penampung nilai bobot (Wj)
             $bobot_preferensi = [];
 
-            //nilai bobot kriteria
-            $kriteria_jenis_layanan = 3;
-            $kriteria_bahan = 3;
-            $kriteria_harga = 5;
-            $kriteria_respon = 4;
-            $kriteria_ukuran = 3;
-            
-            $criterias = [$kriteria_jenis_layanan, $kriteria_bahan, $kriteria_harga, $kriteria_respon, $kriteria_ukuran ];
-
-            //menambahkan setiap bobot kriteria
-            $sumCriteria = array_sum($criterias);
-            
             //masukkan ke array bobot preferensi
             foreach($criterias as $criteria){
-                array_push($bobot_preferensi, $criteria/$sumCriteria);
+                $result = [];
+                foreach ($criteria as $value) {
+                    $result[] = $value / $sumCriteria[0];
+                }
+                $bobot_preferensi[] = $result;
             }
-            
+
             //menghitung nilai preferensi alternatif(S)
             $preferensi_alternatif = [];
             $count1 = 0;
             foreach($places as $place){
-                $preferensi = pow($place->bobot_jenis_layanan, $bobot_preferensi[0]) * pow($place->bobot_bahan, $bobot_preferensi[1]) * pow($bobot_harga_array[$count1], ( -1 * $bobot_preferensi[2])) * pow($place->bobot_respon , $bobot_preferensi[3]) * pow($place->bobot_ukuran , $bobot_preferensi[4]) ;
+                $preferensi = pow($place->bobot_jenis_layanan, $bobot_preferensi[0][0]) * pow($place->bobot_bahan, $bobot_preferensi[0][1]) * 
+                    pow($bobot_harga_array[$count1], ( -1 * $bobot_preferensi[0][2])) * pow($place->bobot_respon , $bobot_preferensi[0][3]) * 
+                    pow($place->bobot_ukuran , $bobot_preferensi[0][4]) ;
                 array_push($preferensi_alternatif, $preferensi);
                 $count1++;
             }
-           
             //Jumlah nilai normalisasi preferensi alternatif
             $sumPreferensi = array_sum($preferensi_alternatif);
 
@@ -137,7 +140,7 @@ class RecommendationController extends Controller
                 $hasil_vektor_satuan = $vektor/$sumPreferensi;
                 array_push($hasil_vektor, $hasil_vektor_satuan);
             }
-
+            // dd($hasil_vektor);
             //sorting places and hasil vektor by descending depends on Vector value
             $count = 0;
             foreach($places as $place){

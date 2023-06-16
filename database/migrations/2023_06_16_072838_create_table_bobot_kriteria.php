@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_filter_ukuran', function (Blueprint $table) {
+        Schema::create('tbl_bobot_kriteria', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_service');
-            $table->foreignId('id_ukuran');
+            $table->integer('jenis_layanan');
+            $table->integer('bahan');
+            $table->integer('harga');
+            $table->integer('respon');
+            $table->integer('ukuran');
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_filter_ukuran');
+        Schema::dropIfExists('tbl_bobot_kriteria');
     }
 };

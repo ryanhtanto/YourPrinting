@@ -19,6 +19,9 @@
                                 <a href="../../admin/add-printing" class="list-group-item list-group-item-action py-2 ripple">
                                         TAMBAH PRINTING
                                 </a>
+                                <a href="../../admin/bobot-kriteria" class="list-group-item list-group-item-action py-2 ripple">
+                                        BOBOT KRITERIA
+                                </a>
                         </div>
                 </div>
         </nav>

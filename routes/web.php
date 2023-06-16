@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BahanController;
+use App\Http\Controllers\BobotKriteriaController;
 use App\Http\Controllers\RegisterControllers;
 use App\Http\Controllers\LoginControllers;
 use App\Http\Controllers\PrintingController;
@@ -71,3 +72,6 @@ Route::post('/admin/logout', [LoginControllers::class, 'logout']);
 
 Route::get('/admin/register', [RegisterControllers::class, 'index'])->middleware('guest');
 Route::post('/admin/register', [RegisterControllers::class, 'store']);
+
+Route::get('/admin/bobot-kriteria', [BobotKriteriaController::class, 'index'])->middleware('auth');
+Route::put('/admin/bobot-kriteria/{bobotKriteria:id}', [BobotKriteriaController::class, 'editBobotKriteria']);
